@@ -36,7 +36,7 @@ coding!
 
 #### Teammates
 - Khalid: [GitHub](https://github.com/volumia) / [LinkedIn](https://www.linkedin.com/in/khalid-khogali/)
-- Sophie Nora: [GitHub](https://github.com/zofienora) / [LinkedIn](https://www.linkedin.com/in/sophie-nora-keil/)
+- Sophie: [GitHub](https://github.com/zofienora) / [LinkedIn](https://www.linkedin.com/in/sophie-nora-keil/)
 - Teammate #3: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Teammate #4: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Teammate #5: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
