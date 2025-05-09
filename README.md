@@ -85,6 +85,8 @@ coding!
 
 - Rafia: [GitHub](https://github.com/rafia-farooq) / [LinkedIn](https://www.linkedin.com/in/rafia-farooq/)
 
+- Mohamed: [GitHub](https://github.com/MohamedNabil720) / [LinkedIn](https://www.linkedin.com/in/muhammad--nabil/)
+
 ## 🙏 Special Thanks
 
 We as a whole team would like to thank the **Chingu** platform and community for this opportunity to learn, improve, and collaborate.
