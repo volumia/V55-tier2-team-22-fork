@@ -44,32 +44,35 @@ const scrumMasters = [
 const Footer = () => {
   return (
     <footer>
-        {
-            developers.map((member, index) => {
-            return (
-                <div>
-                    <p key={index}>{member.name}</p>
-                    <FaGithub></FaGithub>
-                    <FaLinkedin></FaLinkedin>
-                </div>
-                )
-            })
-        }
+        <div className='copyright'>
+            <FaGithub size={32} color='#05DBF2' className='icon'/>
+            <span>© 2025 App Name.</span>
+            <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
+        </div>
+        <div className='teamMembers'>
+            {
+                developers.map((member, index) => {
+                return (
+                    <div>
+                        <p key={index}>{member.name}</p>
+                        <a href={member.github}><FaGithub/></a>
+                        <a href={member.linkedIn}><FaLinkedin/></a>
+                    </div>
+                    )
+                })
+            }
 
-        {
-            scrumMasters.map((member, index) => {
-            return (
-                <div>
-                    <p key={index}>{member.name}</p>
-                    <FaLinkedin></FaLinkedin>
-                </div>
-                )
-            })
-        }
-
-        <FaGithub size={32} color='#05DBF2'></FaGithub>
-        <p>© 2025 App Name.</p>
-        <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
+            {
+                scrumMasters.map((member, index) => {
+                return (
+                    <div>
+                        <p key={index}>{member.name}</p>
+                        <a href={member.linkedIn}><FaLinkedin/></a>
+                    </div>
+                    )
+                })
+            }
+        </div>
     </footer>
   );
 };

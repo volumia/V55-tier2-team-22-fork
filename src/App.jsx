@@ -1,7 +1,7 @@
 import { useState } from "react";
 import chinguLogo from "/chingu.png";
 import "./App.css";
-import Footer from "./components/footer";
+import Footer from "./components/Footer/footer";
 
 function App() {
   const [count, setCount] = useState(0);
