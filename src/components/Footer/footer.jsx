@@ -45,33 +45,44 @@ const Footer = () => {
   return (
     <footer>
         <div className='copyright'>
-            <FaGithub size={32} color='#05DBF2' className='icon'/>
-            <span>© 2025 App Name.</span>
+            <FaGithub size={28} color='#05DBF2' className='icon'/>
+            <span><a href='https://github.com/chingu-voyages/V55-tier2-team-22'>GitHub Repository</a></span>
+            <p>© 2025 App Name.</p>
             <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
         </div>
         <div className='teamMembers'>
-            {
-                developers.map((member, index) => {
-                return (
-                    <div>
-                        <p key={index}>{member.name}</p>
-                        <a href={member.github}><FaGithub/></a>
-                        <a href={member.linkedIn}><FaLinkedin/></a>
-                    </div>
-                    )
-                })
-            }
+            <div className='developers'>
+                <h4>Developers</h4>
+                {
+                    developers.map((member, index) => {
+                    return (
+                        <div>
+                            <p key={index}>{member.name}</p>
+                            <div className='social-links'>
+                                <a href={member.github}><FaGithub color='#05DBF2'size={20} /></a>
+                                <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
+                            </div>
 
-            {
-                scrumMasters.map((member, index) => {
-                return (
-                    <div>
-                        <p key={index}>{member.name}</p>
-                        <a href={member.linkedIn}><FaLinkedin/></a>
-                    </div>
-                    )
-                })
-            }
+                        </div>
+                        )
+                    })
+                }
+            </div>
+            <div className='scrum-masters'>
+                <h4>Scrum Masters</h4>
+                {
+                    scrumMasters.map((member, index) => {
+                    return (
+                        <div>
+                            <p key={index}>{member.name}</p>
+                            <div className='social-links'>
+                                <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
+                            </div>
+                        </div>
+                        )
+                    })
+                }
+            </div>
         </div>
     </footer>
   );
