@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const developers = [
     {
@@ -46,7 +47,11 @@ const Footer = () => {
         {
             developers.map((member, index) => {
             return (
-                <p key={index}>{member.name}</p>
+                <div>
+                    <p key={index}>{member.name}</p>
+                    <FaGithub></FaGithub>
+                    <FaLinkedin></FaLinkedin>
+                </div>
                 )
             })
         }
@@ -54,12 +59,17 @@ const Footer = () => {
         {
             scrumMasters.map((member, index) => {
             return (
-                <p key={index}>{member.name}</p>
+                <div>
+                    <p key={index}>{member.name}</p>
+                    <FaLinkedin></FaLinkedin>
+                </div>
                 )
             })
         }
-      <p>© 2025 App Name. All rights reserved.</p>
-      <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
+
+        <FaGithub size={32} color='#05DBF2'></FaGithub>
+        <p>© 2025 App Name.</p>
+        <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
     </footer>
   );
 };
