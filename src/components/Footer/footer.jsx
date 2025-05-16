@@ -24,8 +24,8 @@ const developers = [
     },
     {
         "name": "Micheal",
-        "github": "https://github.com",
-        "linkedIn": "https://www.linkedin.com/"
+        "github": "https://github.com/Izunnaya",
+        "linkedIn": " https://www.linkedin.com/in/michael-ugorji/"
     }
 ]
 
