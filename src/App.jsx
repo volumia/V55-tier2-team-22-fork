@@ -1,6 +1,7 @@
 import { useState } from "react";
 import chinguLogo from "/chingu.png";
 import "./App.css";
+import Footer from "./components/footer";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,9 +19,7 @@ function App() {
           count is {count}
         </button>
       </div>
-      <p>
-        Edit <code>src/App.jsx</code> and save to test HMR
-      </p>
+      <Footer></Footer>
     </>
   );
 }
