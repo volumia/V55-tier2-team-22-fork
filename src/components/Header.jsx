@@ -1,8 +1,9 @@
 
 
 function Header() {
+
   return (
-    <header>
+    <header className="header">
         <div className="container header-bar">
             <p className="logo-name">AppName</p>
         </div>
@@ -11,7 +12,11 @@ function Header() {
             <p>A collection of over 200 resources for Developers and Designers, all in one place</p>
         </div>
         <div className="container">
-            <input type="text" />
+            <input
+                type="text"
+                placeholder="Search..."
+                
+            />
         </div>
 
       
