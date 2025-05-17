@@ -2,8 +2,19 @@
 
 function Header() {
   return (
-    <header className="bg-gray-800 text-white p-4">
-      <h1 className="text-2xl">My Application</h1>
+    <header>
+        <div className="container header-bar">
+            <p className="logo-name">AppName</p>
+        </div>
+        <div className="container header">
+            <h1>Welcom to AppName </h1>
+            <p>A collection of over 200 resources for Developers and Designers, all in one place</p>
+        </div>
+        <div className="container">
+            <input type="text" />
+        </div>
+
+      
     </header>
   );
 }
