@@ -5,7 +5,7 @@
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
-- [Technologies & Dependencies Used](#technologies--dependencies-used)
+- [Technologies & Dependencies](#technologies--dependencies-used)
 - [Prerequisites](#prerequisites)
 - [Clone & Run Locally](#clone--run-locally)
 - [Team](##our-team)
@@ -13,6 +13,24 @@
 
 
 ## 👥 About Project
+
+## Live Link
+
+## Features
+
+## Screenshots
+
+## How it works
+
+## Technologies & Dependencies
+|dependencies        |                 |                  |
+|--------------------|-----------------|------------------|
+| react              |                 |                  |
+| react-dom          |                 |                  |
+| react-icons        |                 |                  |
+
+
+## Prerequisites
 
 ## Clone & Run Locally
 
