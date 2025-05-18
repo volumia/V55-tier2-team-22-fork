@@ -23,11 +23,19 @@
 ## How it works
 
 ## Technologies & Dependencies
+
 |dependencies        |                 |                  |
 |--------------------|-----------------|------------------|
 | react              |                 |                  |
 | react-dom          |                 |                  |
 | react-icons        |                 |                  |
+| vite               |                 |                  |
+|                    |                 |                  |
+|                    |                 |                  |
+|                    |                 |                  |
+|                    |                 |                  |
+|                    |                 |                  |
+|                    |                 |                  |
 
 
 ## Prerequisites
