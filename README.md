@@ -14,6 +14,8 @@
 
 ## 👥 About Project
 
+A web app that enables developers to easily search, filter, and access curated technical resources from the Chingus Discord community.
+
 ## Live Link
 
 ## Features
