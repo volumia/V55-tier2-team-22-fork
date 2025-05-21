@@ -93,6 +93,11 @@ Open browser
 
 - Rafia: [GitHub](https://github.com/rafia-farooq) / [LinkedIn](https://www.linkedin.com/in/rafia-farooq/)
 
+- Mohamed: [GitHub](https://github.com/MohamedNabil720) / [LinkedIn](https://www.linkedin.com/in/muhammad--nabil/)
+
+- Micheal: [GitHub](https://github.com/Izunnaya) / [LinkedIn](https://www.linkedin.com/in/michael-ugorji/)
+
+
 ## 🙏 Special Thanks
 
 We as a whole team would like to thank the **Chingu** platform and community for this opportunity to learn, improve, and collaborate.
