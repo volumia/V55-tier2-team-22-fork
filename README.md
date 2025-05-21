@@ -5,7 +5,7 @@
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
-- [Technologies & Dependencies](#technologies--dependencies-used)
+- [Technologies & Dependencies Used](#technologies--dependencies-used)
 - [Prerequisites](#prerequisites)
 - [Clone & Run Locally](#clone--run-locally)
 - [Team](#our-team)
