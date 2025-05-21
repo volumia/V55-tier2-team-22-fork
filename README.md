@@ -1,6 +1,6 @@
 # 📚Table of Contents
 
-- [About Project](#about-project)
+- [Project Overview](#project-overview)
 - [Live Link](#live-site)
 - [Features](#features)
 - [Screenshots](#screenshots)
@@ -8,11 +8,11 @@
 - [Technologies & Dependencies](#technologies--dependencies-used)
 - [Prerequisites](#prerequisites)
 - [Clone & Run Locally](#clone--run-locally)
-- [Team](##our-team)
+- [Team](#our-team)
 - [Special Thanks](#special-thanks)
 
 
-## 👥 About Project
+## Project Overview
 
 A web app that enables developers to easily search, filter, and access curated technical resources from the Chingus Discord community.
 
@@ -24,9 +24,11 @@ A web app that enables developers to easily search, filter, and access curated t
 
 ## How it works
 
+- Search the resource library using tags or the search bar.
+
 ## Technologies & Dependencies
 
-|dependencies        |                 |                  |
+|***dependencies***  |                 |                  |
 |--------------------|-----------------|------------------|
 | react              |                 |                  |
 | react-dom          |                 |                  |
@@ -68,6 +70,14 @@ Open browser
 
 
 ## 👥 Our Team
+
+### Project Manager
+
+####  Khalid
+
+### UI/UX Designer
+
+#### Sophie
 
 ### Scrum Masters
 
