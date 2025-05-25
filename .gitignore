@@ -23,8 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Temp directories
+# Temp or cache directories
 .wrangler/*
+.vite/*
 
 # Playwright
 /test-results/
