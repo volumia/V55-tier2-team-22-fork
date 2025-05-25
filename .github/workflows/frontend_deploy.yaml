@@ -6,6 +6,14 @@ on:
     branches:
       - main
       - dev
+  workflow_call:
+
+env:
+  WORKING_DIR: frontend
+
+defaults:
+ run:
+  working-directory: frontend
 
 jobs:
   deploy:
@@ -13,9 +21,12 @@ jobs:
     name: Build and deploy
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{ env.WORKING_DIR }}
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: ${{ env.WORKING_DIR }}/package.json
 
       - name: Build app
         run: |
@@ -31,3 +42,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           command: pages deploy
+          workingDirectory: ${{ env.WORKING_DIR }}
