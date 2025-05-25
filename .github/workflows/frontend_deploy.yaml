@@ -2,10 +2,9 @@ name: Deploy to CF Pages
 run-name: Deploy to CF Pages
 
 on:
-  push:
-    branches:
-      - main
-      - dev
+  workflow_run:
+    workflows: [Test and lint]
+    types: [completed]
   workflow_call:
 
 env:
@@ -19,6 +18,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Build and deploy
+    # Only deploy if the test and lint succeeded 
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
         with:
