@@ -2,49 +2,16 @@
 
 footer {
     border-top: 1px solid var(--accent-blue);
-    padding-top: 20px;
 }
 
-.copyright .icon {
+.icon {
     display: inline;
     margin-right: 10px;
 }
 
-.copyright p {
-    font-size: 0.7em;
-}
 
 .teamMembers {
     display: flex;
     flex-direction: column;
     width: 50%;
-}
-
-.developers {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 30px;
-}
-
-.scrum_masters {
-    display: flex;
-    align-items: baseline;
-}
-
-.developers>div, .scrum_masters>div {
-    margin: 0 20px;
-}
-
-.developers>h4, .scrum_masters>h4 {
-    font-weight: bold;
-    width: 20%;
-}
-
-.social_links {
-    display: flex;
-    justify-content: center;
-}
-
-.social_links>a{
-    margin-right: 5px;
 }

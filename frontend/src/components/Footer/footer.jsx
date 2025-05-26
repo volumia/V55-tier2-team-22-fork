@@ -44,22 +44,22 @@ const scrumMasters = [
 const Footer = () => {
   return (
     <footer className='flex-col pt-5 lg:flex-row'>
-        <div className='sm:pb-8 lg:pb-0'>
+        <div className='pb-8 lg:pb-0'>
             <FaGithub size={28} color='#05DBF2' className={styles.icon}/>
             <span><a href='https://github.com/chingu-voyages/V55-tier2-team-22'>GitHub Repository</a></span>
-            <p className='pt-5'>© 2025 App Name.</p>
+            <p className='pt-5 text-xs'>© 2025 App Name.</p>
             <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
         </div>
-        <div className='md:flex-col'>
-            <div className='flex flex-col justify-center'>
-                <h4>Developers</h4>
+        <div className='flex flex-row justify-evenly pt-4'>
+            <div className='flex flex-col items-center'>
+                <h4 className='font-bold'>Developers</h4>
                 {
                     developers.map((member, index) => {
                     return (
-                        <div key={index}>
+                        <div key={index} className='flex flex-col justify-evenly py-2'>
                             <p>{member.name}</p>
-                            <div className={styles.social_links}>
-                                <a href={member.github}><FaGithub color='#05DBF2'size={20} /></a>
+                            <div className='flex justify-center item-center'>
+                                <a href={member.github} className='pr-2'><FaGithub color='#05DBF2'size={20} /></a>
                                 <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
                             </div>
 
@@ -68,14 +68,14 @@ const Footer = () => {
                     })
                 }
             </div>
-            <div className={styles.scrum_masters}>
-                <h4>Scrum Masters</h4>
+            <div className='flex flex-col items-center'>
+                <h4 className='font-bold'>Scrum Masters</h4>
                 {
                     scrumMasters.map((member, index) => {
                     return (
-                        <div key={index}>
+                        <div key={index} className='flex flex-col justify-evenly py-2'>
                             <p>{member.name}</p>
-                            <div className={styles.social_links}>
+                            <div className='flex justify-center item-center'>
                                 <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
                             </div>
                         </div>
