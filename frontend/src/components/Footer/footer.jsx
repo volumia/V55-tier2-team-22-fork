@@ -44,13 +44,13 @@ const scrumMasters = [
 const Footer = () => {
   return (
     <footer className='flex-col pt-5 lg:flex-row'>
-        <div className='pb-8 lg:pb-0'>
+        <div className='pb-8 lg:pb-0 lg:pr-12'>
             <FaGithub size={28} color='#05DBF2' className={styles.icon}/>
             <span><a href='https://github.com/chingu-voyages/V55-tier2-team-22'>GitHub Repository</a></span>
             <p className='pt-5 text-xs'>© 2025 App Name.</p>
             <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
         </div>
-        <div className='flex flex-row justify-evenly pt-4 md:flex-col'>
+        <div className='flex flex-row justify-evenly pt-4 md:flex-col lg:grow lg:pl-12'>
             <div className='flex flex-col items-center md:flex-row md:justify-between'>
                 <h4 className='font-bold'>Developers</h4>
                 {
