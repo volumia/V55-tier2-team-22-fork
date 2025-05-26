@@ -3,15 +3,3 @@
 footer {
     border-top: 1px solid var(--accent-blue);
 }
-
-.icon {
-    display: inline;
-    margin-right: 10px;
-}
-
-
-.teamMembers {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
