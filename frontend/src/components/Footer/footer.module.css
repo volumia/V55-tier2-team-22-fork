@@ -2,8 +2,6 @@
 
 footer {
     border-top: 1px solid var(--accent-blue);
-    display: flex;
-    justify-content: space-between;
     padding-top: 20px;
 }
 
@@ -14,10 +12,6 @@ footer {
 
 .copyright p {
     font-size: 0.7em;
-}
-
-.copyright p:first-of-type {
-    padding-top: 30px;
 }
 
 .teamMembers {
