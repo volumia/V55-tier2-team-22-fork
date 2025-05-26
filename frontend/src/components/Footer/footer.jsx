@@ -50,8 +50,8 @@ const Footer = () => {
             <p className='pt-5 text-xs'>© 2025 App Name.</p>
             <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
         </div>
-        <div className='flex flex-row justify-evenly pt-4'>
-            <div className='flex flex-col items-center'>
+        <div className='flex flex-row justify-evenly pt-4 md:flex-col'>
+            <div className='flex flex-col items-center md:flex-row md:justify-between'>
                 <h4 className='font-bold'>Developers</h4>
                 {
                     developers.map((member, index) => {
@@ -68,13 +68,13 @@ const Footer = () => {
                     })
                 }
             </div>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center md:flex-row'>
                 <h4 className='font-bold'>Scrum Masters</h4>
                 {
                     scrumMasters.map((member, index) => {
                     return (
                         <div key={index} className='flex flex-col justify-evenly py-2'>
-                            <p>{member.name}</p>
+                            <p className='px-8'>{member.name}</p>
                             <div className='flex justify-center item-center'>
                                 <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
                             </div>
