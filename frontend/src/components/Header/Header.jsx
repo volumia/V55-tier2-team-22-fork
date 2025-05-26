@@ -12,13 +12,6 @@ function Header() {
             <h1>Welcome to AppName </h1>
             <p>A collection of over 200 resources for Developers and Designers, all in one place</p>
         </div>
-        <div className={`${styles.container} ${styles.inputContainer}`}>
-            <input
-                type="text"
-                placeholder="Search..."
-                className={styles.search_bar}
-            />
-        </div>
     </header>
   );
 }

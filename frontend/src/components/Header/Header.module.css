@@ -34,20 +34,3 @@
   font-weight: 400;
   color: white;
 }
-
-.input_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: .5em;
-}
-
-.search_bar {
-  width: 80%;
-  max-width: 600px;
-  height: 30px;
-  border-radius: 8px;
-  border: none;
-  padding: 0.5em;
-  font-size: 1rem;
-}
