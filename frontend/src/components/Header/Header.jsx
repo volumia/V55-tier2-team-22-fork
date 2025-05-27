@@ -7,6 +7,7 @@ function Header() {
     <header className={styles.header}>
        <div className={`${styles.container} ${styles.header_bar}`}>
             <p className={styles.logo_name}>AppName</p>
+            <p className={styles.header_date}>May 27, 2025</p>
         </div>
         <div className={`${styles.container} ${styles.header_mid}`}>
             <h1>Welcome to AppName </h1>
