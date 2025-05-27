@@ -1,12 +1,6 @@
 /* This is CSS specific to the App.jsx route. Global app styles should be added to index.css */
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light;
-  color: #213547;
-  background-color: #0D0D0D;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,101 +9,9 @@
 
 body {
   margin: 20px auto;
-  min-width: 320px;
-  display: flex;
-  place-items: center;
+  min-width: 80%;
   min-height: 100vh;
 }
 
 
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #e1e1e1;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-
-
-/* HEADER STYLES */
-
-.container {
-  width: 80%;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-  margin: 0 auto;
-}
-
-.header {
-  
-}
-
-.logo-name {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #05DBF2;
-  padding-bottom: .5em;
-  padding-top: .5em;
-  border-bottom: 1px solid white;
-  text-align: left;
-  width: 100%;
-}
-
-.header-mid {
-  text-align: center;
-  padding: 4em 0;
-}
-
-.header-mid h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #0A8CBF;
-}
-
-.header-mid p {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: white;
-}
-
-.input-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: .5em;
-}
-
-.search-bar {
-  width: 80%;
-  max-width: 600px;
-  height: 30px;
-  border-radius: 8px;
-  border: none;
-  padding: 0.5em;
-  font-size: 1rem;
-}
