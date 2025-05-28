@@ -12,6 +12,10 @@ function PaginationBar({ firstItemIndex, totalItems, pageSize, maxVisiblePageBut
     computePageArrangement(firstItemIndex, totalItems, pageSize, maxVisiblePageButtons)
   );
 
+  function isPageIndexIncluded(pageIndex) {
+    return arrangement != null && arrangement.indexOf(pageIndex) !== -1;
+  }
+
   useEffect(() => {
     setCurrentPageIndex(computePageIndex(firstItemIndex, pageSize));
     setArrangement(computePageArrangement(firstItemIndex, totalItems, pageSize, maxVisiblePageButtons));
@@ -32,7 +36,11 @@ function PaginationBar({ firstItemIndex, totalItems, pageSize, maxVisiblePageBut
 
   return (
     <div className="w-fit ml-auto mr-auto flex flex-row gap-2 my-4">
-      <button className={styles.page_button} onClick={() => attemptChangePage(currentPageIndex - 1)}>
+      <button
+        className={styles.page_button}
+        onClick={() => attemptChangePage(currentPageIndex - 1)}
+        disabled={!isPageIndexIncluded(currentPageIndex - 1)}
+      >
         <FaAngleLeft></FaAngleLeft>
       </button>
 
@@ -47,7 +55,11 @@ function PaginationBar({ firstItemIndex, totalItems, pageSize, maxVisiblePageBut
         );
       })}
 
-      <button className={styles.page_button} onClick={() => attemptChangePage(currentPageIndex + 1)}>
+      <button
+        className={styles.page_button}
+        onClick={() => attemptChangePage(currentPageIndex + 1)}
+        disabled={!isPageIndexIncluded(currentPageIndex + 1)}
+      >
         <FaAngleRight></FaAngleRight>
       </button>
     </div>
