@@ -27,9 +27,6 @@ async function fetchData() {
     // onTagSelect(selectedOptions); //pass tags to parent component
   };
 
-  
-    console.log(selectedTags)
-
   return (
     <div className="max-w-sm inline-block py-8">
       <label htmlFor="tagDropdown">
@@ -42,7 +39,7 @@ async function fetchData() {
         onChange={handleChange}
         className="w-full px-3 py-1 border border-cyan-400 rounded-md focus:outline-none focus:ring-1 focus:ring-sky-600 focus:border-sky-600"
       >
-        <option value="" className='bg-black'>Select a tag</option>
+        <option value="" className='font-bold italic uppercase' disabled>Select tags</option>
         {tags.map(tag => (
           <option key={tag.id} value={tag.tag} className='bg-black-100'>
             {tag.tag}
@@ -55,6 +52,9 @@ async function fetchData() {
           Selected: {selectedTags.join(', ')}
         </div>
       )}
+      <div>
+        <button onClick={() => setSelectedTags([])}>Clear Tags</button>
+      </div>
 
     </div>
   );
