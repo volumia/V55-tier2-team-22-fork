@@ -6,23 +6,17 @@ import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import { useEffect, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
 import { getResources } from "./util/getResourceData";
+import { computeRangeFromPageIndex } from "./util/pagination";
 
+const initialPageIndex = 0;
 const pageSize = 9;
-const initialPage = 0;
-
-function deriveRangeFromPageIndex(index) {
-  return {
-    min: index * pageSize,
-    max: index * pageSize + pageSize,
-  };
-}
 
 function App() {
   const [resources, setResources] = useState([]);
-  const [itemDisplayRange, setItemDisplayRange] = useState(deriveRangeFromPageIndex(initialPage));
+  const [itemDisplayRange, setItemDisplayRange] = useState(computeRangeFromPageIndex(initialPageIndex, pageSize));
 
   function onPageIndexChange(index) {
-    setItemDisplayRange(deriveRangeFromPageIndex(index));
+    setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
   }
 
   useEffect(() => {

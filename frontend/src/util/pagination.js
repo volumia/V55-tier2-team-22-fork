@@ -45,6 +45,18 @@ export function computeTotalNumberOfPages(totalItems, pageSize) {
 }
 
 /**
+ * @param {number} pageIndex The page index.
+ * @param {number} pageSize The maximum number of items in one page.
+ * @returns {{min: number, max: number}} The range bounded by the page.
+ */
+export function computeRangeFromPageIndex(pageIndex, pageSize) {
+  return {
+    min: pageIndex * pageSize,
+    max: pageIndex * pageSize + pageSize,
+  };
+}
+
+/**
  * Computes an arrangement of page indexes surrounding a central page. 
  * Page indexes that do not exist are not included.
  * 
