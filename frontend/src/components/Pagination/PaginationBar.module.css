@@ -1,0 +1,27 @@
+.page_button,
+.page_button_current {
+  display: inline-block;
+
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+
+  text-align: center;
+  vertical-align: middle;
+
+  background-color: var(--color-gray-100);
+
+  transition: none;
+}
+
+.page_button_current {
+  background-color: var(--color-cyan-500);
+  outline: 2px solid var(--color-cyan-100);
+}
+
+.page_button_current:hover {
+  background-color: var(--color-cyan-500);
+}
+
+.page_button_current:active {
+  background-color: var(--color-cyan-500);
+}
