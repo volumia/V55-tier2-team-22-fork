@@ -3,9 +3,7 @@ import styles from "./PaginationBar.module.css";
 import { computePageIndex, computePageArrangement } from "@/util/pagination";
 import PageButton from "./PageButton.jsx";
 
-const maxVisiblePageButtons = 5;
-
-function PaginationBar({ firstItemIndex, totalItems, pageSize, onChangePage }) {
+function PaginationBar({ firstItemIndex, totalItems, pageSize, maxVisiblePageButtons, onChangePage }) {
   const [currentPageIndex, setCurrentPageIndex] = useState(computePageIndex(firstItemIndex, pageSize));
 
   const [arrangement, setArrangement] = useState(
@@ -15,7 +13,7 @@ function PaginationBar({ firstItemIndex, totalItems, pageSize, onChangePage }) {
   useEffect(() => {
     setCurrentPageIndex(computePageIndex(firstItemIndex, pageSize));
     setArrangement(computePageArrangement(firstItemIndex, totalItems, pageSize, maxVisiblePageButtons));
-  }, [firstItemIndex, pageSize, totalItems]);
+  }, [firstItemIndex, pageSize, totalItems, maxVisiblePageButtons]);
 
   function attemptChangePage(pageIndex) {
     const minPage = 0;
@@ -24,6 +22,10 @@ function PaginationBar({ firstItemIndex, totalItems, pageSize, onChangePage }) {
     if (pageIndex >= minPage && pageIndex < maxPage) {
       onChangePage(pageIndex);
     }
+  }
+
+  if (arrangement == null) {
+    return null;
   }
 
   return (
