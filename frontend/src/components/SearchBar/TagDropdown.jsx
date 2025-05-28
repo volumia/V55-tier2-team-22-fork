@@ -24,7 +24,7 @@ async function fetchData() {
   const handleChange = (e) => {
     const selectedOptions = Array.from(e.target.selectedOptions).map(option => option.value);
     setSelectedTags(selectedOptions);
-    // onTagSelect(selectedOptions); //pass tags to parent component
+    onTagSelect(selectedOptions); //pass tags to parent component
   };
 
   return (
@@ -41,17 +41,18 @@ async function fetchData() {
       >
         <option value="" className='font-bold italic uppercase' disabled>Select tags</option>
         {tags.map(tag => (
-          <option key={tag.id} value={tag.tag} className='bg-black-100'>
+          <option key={tag.id} value={tag.tag} className='bg-black'>
             {tag.tag}
           </option>
         ))}
       </select>
 
       {selectedTags.length > 0 && (
-        <div className="max-w-50 mt-2 text-sm text-gray-600">
+        <div className="max-w-50 text-sm text-gray-600">
           Selected: {selectedTags.join(', ')}
         </div>
       )}
+      {/* clear tags button */}
       <div>
         <button onClick={() => setSelectedTags([])}>Clear Tags</button>
       </div>

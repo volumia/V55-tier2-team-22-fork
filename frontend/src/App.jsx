@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import TagDropdown from './components/SearchBar/TagDropdown';
 
 function App() {
+  const [ selectedTags, setSelectedTags ] = useState([])
   return (
     <>
       {/* Header of the App */}
@@ -16,10 +17,10 @@ function App() {
       <SearchBar/>
 
       {/* Tags Dropdown Selection */}
-      <TagDropdown />
+      <TagDropdown onTagSelect={setSelectedTags}/>
 
       {/* Show the resources fetched from the API */}
-      <ResourceList/>
+      <ResourceList selectedTags={selectedTags} />
 
       {/* Footer of the App */}
       <Footer/>

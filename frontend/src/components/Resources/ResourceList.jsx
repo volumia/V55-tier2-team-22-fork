@@ -3,7 +3,7 @@ import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
 import { getResources, getTags } from '@/util/getResourceData';
 
-function ResourceList() {
+function ResourceList({ selectedTags }) {
   const [resources, setResources] = useState([]);
   const [tagMap, setTagMap] = useState(null); // null until loaded
   const [status, setStatus] = useState('loading'); //loading, failed, succeeded
@@ -58,10 +58,20 @@ function ResourceList() {
     );
   }
 
+  // Filter resources based on selectedTags
+  const filteredResources = selectedTags.length === 0
+    ? resources
+    : resources.filter(resource => {
+        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
+        // Check if resource has any tag from selectedTags
+        return selectedTags.some(tag => resourceTagNames.includes(tag));
+      });
+
+
   return (
     <>
       <div className={styles.resource_section}>
-        {resources.slice(0, visibleArticles).map(resource => {
+        {filteredResources.slice(0, visibleArticles).map(resource => {
           // Convert tag IDs to tag names
           const convertedTag = (resource.appliedTags || []).map(
             (id) => tagMap[id] || 'Unknown'
