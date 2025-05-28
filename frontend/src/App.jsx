@@ -40,6 +40,9 @@ function App() {
       <Header />
       {/* Search Bar */}
       <SearchBar />
+      
+      {/* Show the resources fetched from the API */}
+      <ResourceList displayRange={itemDisplayRange} />
       <PaginationBar
         firstItemIndex={itemDisplayRange.min}
         pageSize={pageSize}
@@ -47,9 +50,6 @@ function App() {
         maxVisiblePageButtons={5}
         onChangePage={onPageIndexChange}
       ></PaginationBar>
-
-      {/* Show the resources fetched from the API */}
-      <ResourceList displayRange={itemDisplayRange} />
 
       {/* Footer of the App */}
       <Footer />
