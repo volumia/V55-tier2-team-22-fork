@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getTags } from '@/util/getResourceData';
+import styles from './SearchBar.module.css';
 
 function TagDropdown({ onTagSelect }) {
     const [tags, setTags] = useState([]);
@@ -41,7 +42,7 @@ async function fetchData() {
       >
         <option value="" className='font-bold italic uppercase' disabled>Select tags</option>
         {tags.map(tag => (
-          <option key={tag.id} value={tag.tag} className='bg-black'>
+          <option key={tag.id} value={tag.tag} className='py-2 border-b-1 border-sky-600'>
             {tag.tag}
           </option>
         ))}
@@ -54,7 +55,7 @@ async function fetchData() {
       )}
       {/* clear tags button */}
       <div>
-        <button onClick={() => setSelectedTags([])}>Clear Tags</button>
+        <button onClick={() => setSelectedTags([])} className={styles.clear_btn}>Clear Tags</button>
       </div>
 
     </div>

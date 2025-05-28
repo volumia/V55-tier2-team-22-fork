@@ -16,3 +16,28 @@
   padding: 0.5em;
   font-size: 1rem;
 }
+
+/* Clear button for Tags*/
+.clear_btn {
+  background-color: var(--primary-blue-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 20px;
+  padding: 0.4em 1.3em;
+  font-variant: small-caps;
+  margin: 20px 0
+}
+
+.clear_btn:hover {
+  background-color: var(--accent-blue);
+}
+
+.clear_btn:active {
+  background-color: var(--accent-blue);
+  border-color: var(--highlight-blue);
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
