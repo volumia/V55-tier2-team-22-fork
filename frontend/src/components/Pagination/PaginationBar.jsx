@@ -3,23 +3,23 @@ import styles from "./PaginationBar.module.css";
 import { computePageIndex, computePageArrangement } from "@/util/pagination";
 import PageButton from "./PageButton.jsx";
 
-const maxVisiblePages = 5;
+const maxVisiblePageButtons = 5;
 
-function PaginationBar({ firstItemIndex, totalNumberOfItems, itemsPerPage, onChangePage }) {
-  const [currentPageIndex, setCurrentPageIndex] = useState(computePageIndex(firstItemIndex, itemsPerPage));
+function PaginationBar({ firstItemIndex, totalItems, pageSize, onChangePage }) {
+  const [currentPageIndex, setCurrentPageIndex] = useState(computePageIndex(firstItemIndex, pageSize));
 
   const [arrangement, setArrangement] = useState(
-    computePageArrangement(firstItemIndex, totalNumberOfItems, itemsPerPage, maxVisiblePages)
+    computePageArrangement(firstItemIndex, totalItems, pageSize, maxVisiblePageButtons)
   );
 
   useEffect(() => {
-    setCurrentPageIndex(computePageIndex(firstItemIndex, itemsPerPage));
-    setArrangement(computePageArrangement(firstItemIndex, totalNumberOfItems, itemsPerPage, maxVisiblePages));
-  }, [firstItemIndex, itemsPerPage, totalNumberOfItems]);
+    setCurrentPageIndex(computePageIndex(firstItemIndex, pageSize));
+    setArrangement(computePageArrangement(firstItemIndex, totalItems, pageSize, maxVisiblePageButtons));
+  }, [firstItemIndex, pageSize, totalItems]);
 
   function attemptChangePage(pageIndex) {
     const minPage = 0;
-    const maxPage = Math.ceil(totalNumberOfItems / itemsPerPage);
+    const maxPage = Math.ceil(totalItems / pageSize);
 
     if (pageIndex >= minPage && pageIndex < maxPage) {
       onChangePage(pageIndex);

@@ -1,20 +1,83 @@
-export function computePageIndex(firstIndex, itemsPerPage) {
-  return Math.floor(firstIndex / itemsPerPage);
+/*
+  This is a small utility library for processing pages for the purposes of pagination UI.
+
+  For this library, a page is defined as a range around a sequence/array of items, bounded between [start, end).
+  Pages are placed in sequence to each other. 
+  Each page has an index (according to its position), and has a size (which is the *maximum* number of items it includes).
+
+  Here's a visual explanation. With an array of 9 items and a page size of 3, this would be the resulting layout:
+
+              |    Page 0  |     Page 1  |     Page 2  |
+  Items:      | A,  B,  C, |  D,  E,  F, |  G,  H,  I  |
+  Item index: | 0,  1,  2, |  3,  4,  5, |  6,  7,  8  |
+
+  Page 0 is bounded between [0, 3) and includes items [A, B, C].
+  Page 1 is bounded between [3, 6) and includes items [D, E, F].
+  Page 2 is bounded between [6, 9) and includes items [G, H, I].
+*/
+
+/**
+ * Computes the page index an item of some index belongs to.
+ * @param {number} itemIndex The index of the item.
+ * @param {number} pageSize The maximum number of items in one page.
+ * @returns {number|null} The page index. Will instead be null if any of the arguments are invalid.
+ */
+export function computePageIndex(itemIndex, pageSize) {
+  if (itemIndex < 0 || pageSize <= 0) {
+    return null;
+  }
+
+  return Math.floor(itemIndex / pageSize);
 }
 
-export function computePageArrangement(firstItemIndex, totalNumberOfItems, itemsPerPage, maxNumberOfPages) {
-  const centerPageIndex = computePageIndex(firstItemIndex, itemsPerPage);
-  const arrangement = [centerPageIndex];
+/**
+ * Computes the number of pages represented by a number of items included by pages of a size.
+ * @param {number} totalItems The total number of items.
+ * @param {number} pageSize The maximum number of items in one page.
+ * @returns {number|null} The total number of pages. Will instead be null if any of the arguments are invalid.
+ */
+export function computeTotalNumberOfPages(totalItems, pageSize) {
+  if (totalItems <= 0 || pageSize <= 0) {
+    return null;
+  }
 
-  let numberOfPreviousPages = centerPageIndex;
-  const itemsRemaining = totalNumberOfItems - firstItemIndex - itemsPerPage;
-  let numberOfNextPages = Math.ceil(itemsRemaining / itemsPerPage);
-  const totalPages = numberOfPreviousPages + numberOfNextPages + 1;
+  return Math.ceil(totalItems / pageSize);
+}
 
-  let pagesToAdd = Math.min(totalPages, maxNumberOfPages) - 1;
+/**
+ * Computes an arrangement of page indexes surrounding a central page. 
+ * Page indexes that do not exist are not included.
+ * 
+ * @param {number} itemIndex The index of an item included in the central page.
+ * @param {number} totalItems The total number of items.
+ * @param {number} pageSize The maximum number of items in one page.
+ * @param {number} [maxLength] The maximum length of the resulting array.
+ * @returns {number[]|null} An array of page indexes. Will instead be null if any of the arguments are invalid.
+ */
+export function computePageArrangement(itemIndex, totalItems, pageSize, maxLength = undefined) {
+  if (itemIndex < 0 || totalItems <= 0 || pageSize <= 0) {
+    return null;
+  }
+  
+  const centralPageIndex = computePageIndex(itemIndex, pageSize);
+  const arrangement = [centralPageIndex];
+  const totalPages = computeTotalNumberOfPages(totalItems, pageSize);
+
+  let numberOfPreviousPages = centralPageIndex;
+  let numberOfNextPages = totalPages - centralPageIndex - 1;
+
+  // We subtract `pagesToAdd` by 1 since the the central page's index has already been added to `arrangement`.
+  let pagesToAdd = totalPages - 1;
+  if (maxLength != undefined) {
+    // We can't add more pages than the number of pages that actually exist.
+    // This also prevents an infinite while loop.
+    pagesToAdd = Math.min(totalPages, maxLength) - 1;
+  }
+
+  // Alternate between adding page indexes to the left and to the right of the central page index.
   let addLeft = true;
-
   while (pagesToAdd > 0) {
+    // Add a page index to the left of the central page index.
     if (addLeft && numberOfPreviousPages > 0) {
       const firstNumber = arrangement[0] - 1;
       arrangement.unshift(firstNumber);
@@ -22,6 +85,7 @@ export function computePageArrangement(firstItemIndex, totalNumberOfItems, items
       pagesToAdd--;
     }
 
+    // Add a page index to the right of the central page index.
     if (!addLeft && numberOfNextPages > 0) {
       const lastNumber = arrangement[arrangement.length - 1] + 1;
       arrangement.push(lastNumber);
