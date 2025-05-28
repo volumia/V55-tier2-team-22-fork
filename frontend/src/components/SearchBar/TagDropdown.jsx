@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { getTags } from '@/util/getResourceData';
 
 function TagDropdown({ onTagSelect }) {
-  const [tags, setTags] = useState([]);
-  const [selectedTag, setSelectedTag] = useState('');
+    const [tags, setTags] = useState([]);
+    const [selectedTags, setSelectedTags] = useState([]); // Array for multi-select
 
 async function fetchData() {
       try {
@@ -22,28 +22,40 @@ async function fetchData() {
 
 
   const handleChange = (e) => {
-    setSelectedTag(e.target.value);
-    // onTagSelect(e.target.value);
+    const selectedOptions = Array.from(e.target.selectedOptions).map(option => option.value);
+    setSelectedTags(selectedOptions);
+    // onTagSelect(selectedOptions); //pass tags to parent component
   };
+
+  
+    console.log(selectedTags)
 
   return (
     <div className="max-w-sm inline-block py-8">
       <label htmlFor="tagDropdown">
-        Search by Tags
+        Search by Tags:
       </label>
       <select
         id="tagDropdown"
-        value={selectedTag}
+        multiple
+        value={selectedTags}
         onChange={handleChange}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+        className="w-full px-3 py-1 border border-cyan-400 rounded-md focus:outline-none focus:ring-1 focus:ring-sky-600 focus:border-sky-600"
       >
-        <option value="">Select a tag</option>
+        <option value="" className='bg-black'>Select a tag</option>
         {tags.map(tag => (
-          <option key={tag.id} value={tag.tag}>
+          <option key={tag.id} value={tag.tag} className='bg-black-100'>
             {tag.tag}
           </option>
         ))}
       </select>
+
+      {selectedTags.length > 0 && (
+        <div className="max-w-50 mt-2 text-sm text-gray-600">
+          Selected: {selectedTags.join(', ')}
+        </div>
+      )}
+
     </div>
   );
 }
