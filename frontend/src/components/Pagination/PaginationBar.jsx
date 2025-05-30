@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "./PaginationBar.module.css";
 import { computePageIndex, computePageArrangement } from "@/util/pagination";
 import PageButton from "./PageButton.jsx";
 import { FaAngleLeft } from "react-icons/fa";
@@ -58,32 +57,31 @@ function PaginationBar({ firstItemIndex, totalItems, pageSize, maxVisiblePageBut
 
   return (
     <div ref={barEl} className="w-fit ml-auto mr-auto flex flex-row gap-2 my-4">
-      <button
-        className={styles.page_button}
+      <PageButton
         onClick={() => attemptChangePage(currentPageIndex - 1)}
-        disabled={!isPageIndexIncluded(currentPageIndex - 1)}
+        isDisabled={!isPageIndexIncluded(currentPageIndex - 1)}
       >
         <FaAngleLeft></FaAngleLeft>
-      </button>
+      </PageButton>
 
       {arrangement.map((n) => {
         return (
           <PageButton
             key={n}
-            index={n}
             isCurrent={currentPageIndex === n}
             onClick={() => attemptChangePage(n)}
-          ></PageButton>
+          >
+            {n + 1}
+          </PageButton>
         );
       })}
 
-      <button
-        className={styles.page_button}
+      <PageButton
         onClick={() => attemptChangePage(currentPageIndex + 1)}
-        disabled={!isPageIndexIncluded(currentPageIndex + 1)}
+        isDisabled={!isPageIndexIncluded(currentPageIndex + 1)}
       >
         <FaAngleRight></FaAngleRight>
-      </button>
+      </PageButton>
     </div>
   );
 }
