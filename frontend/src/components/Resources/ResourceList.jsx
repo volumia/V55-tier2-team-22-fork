@@ -60,7 +60,7 @@ function ResourceList({ displayRange }) {
   return (
     <>
       <div className={styles.resource_section}>
-        {resources.slice(displayRange.min, displayRange.max).map(resource => {
+        {resources.slice(displayRange.start, displayRange.end).map(resource => {
           // Convert tag IDs to tag names
           const convertedTag = (resource.appliedTags || []).map(
             (id) => tagMap[id] || 'Unknown'

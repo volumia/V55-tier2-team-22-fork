@@ -47,19 +47,19 @@ export function computeTotalNumberOfPages(totalItems, pageSize) {
 /**
  * @param {number} pageIndex The page index.
  * @param {number} pageSize The maximum number of items in one page.
- * @returns {{min: number, max: number}} The range of items that the page represents.
+ * @returns {{start: number, end: number}} The range of items that the page represents. `end` is exclusive i.e. not included in the page.
  */
 export function computeRangeFromPageIndex(pageIndex, pageSize) {
   return {
-    min: pageIndex * pageSize,
-    max: pageIndex * pageSize + pageSize,
+    start: pageIndex * pageSize,
+    end: pageIndex * pageSize + pageSize,
   };
 }
 
 /**
- * Computes an arrangement of page indexes surrounding a central page. 
+ * Computes an arrangement of page indexes surrounding a central page.
  * Page indexes that do not exist are not included.
- * 
+ *
  * @param {number} itemIndex The index of an item included in the central page.
  * @param {number} totalItems The total number of items.
  * @param {number} pageSize The maximum number of items in one page.
@@ -70,7 +70,7 @@ export function computePageArrangement(itemIndex, totalItems, pageSize, maxLengt
   if (itemIndex < 0 || totalItems <= 0 || pageSize <= 0) {
     return null;
   }
-  
+
   const centralPageIndex = computePageIndex(itemIndex, pageSize);
   const arrangement = [centralPageIndex];
   const totalPages = computeTotalNumberOfPages(totalItems, pageSize);

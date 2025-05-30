@@ -38,7 +38,7 @@ function App() {
       {/* Show the resources fetched from the API */}
       <ResourceList displayRange={itemDisplayRange} />
       <PaginationBar
-        firstItemIndex={itemDisplayRange.min}
+        firstItemIndex={itemDisplayRange.start}
         pageSize={pageSize}
         totalItems={resources.length}
         maxVisiblePageButtons={5}
