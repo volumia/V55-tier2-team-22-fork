@@ -1,63 +1,96 @@
 import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
 import { getTags } from '@/util/getResourceData';
 import styles from './SearchBar.module.css';
 
 function TagDropdown({ onTagSelect }) {
-    const [tags, setTags] = useState([]);
-    const [selectedTags, setSelectedTags] = useState([]); // Array for multi-select
+  const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
-async function fetchData() {
+  useEffect(() => {
+    async function fetchData() {
       try {
         const tagsData = await getTags();
         setTags(tagsData);
-      }
-
-      catch (error) {
+      } catch (error) {
         console.error('Failed to fetch tags:', error);
       }
     }
+    fetchData();
+  }, []);
 
-  useEffect(() => {
-     fetchData();
-    }, []);
+  const options = tags.map(tag => ({
+    value: tag.tag,
+    label: tag.tag,
+  }));
 
-
-  const handleChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions).map(option => option.value);
-    setSelectedTags(selectedOptions);
-    onTagSelect(selectedOptions); //pass tags to parent component
+  const handleChange = (selected) => {
+    const selectedValues = selected ? selected.map(option => option.value) : [];
+    setSelectedTags(selectedValues);
+    onTagSelect(selectedValues); // Pass selected tag strings to parent
   };
+
+  // Styles for react-select component
+
+const dropdownStyles = {
+  control: (base) => ({
+    ...base,
+    backgroundColor: 'black',
+    borderColor: '#05dbf2',
+    color: 'white',
+    margin: '1rem 0', 
+    width: '400px',
+  }),
+  menu: (base) => ({
+    ...base,
+    backgroundColor: 'black',
+    color: 'white',
+  }),
+  option: (base, state) => ({
+    ...base,
+    backgroundColor: state.isFocused ? '#0a8cbf' : 'black',
+    color: 'white',
+    cursor: 'pointer',
+  }),
+  multiValue: (base) => ({
+    ...base,
+    backgroundColor: '#111',
+    color: '#04b2d9', // background color
+  }),
+  multiValueLabel: (base) => ({
+    ...base,
+    color: '#04b2d9', // selected tag text color
+  }),
+  multiValueRemove: (base) => ({
+    ...base,
+    color: '#04b2d9',
+    ':hover': {
+      backgroundColor: '#222',
+      color: '#fff',
+    },
+  }),
+  singleValue: (base) => ({
+    ...base,
+    color: 'white',
+  }),
+};
+
 
   return (
     <div className="max-w-sm inline-block py-8">
       <label htmlFor="tagDropdown">
         Search by Tags:
       </label>
-      <select
+
+      <Select
         id="tagDropdown"
-        multiple
-        value={selectedTags}
+        isMulti
+        options={options}
+        value={options.filter(opt => selectedTags.includes(opt.value))}
         onChange={handleChange}
-        className="w-full px-3 py-1 border border-cyan-400 rounded-md focus:outline-none focus:ring-1 focus:ring-sky-600 focus:border-sky-600"
-      >
-        <option value="" className='font-bold italic uppercase' disabled>Select tags</option>
-        {tags.map(tag => (
-          <option key={tag.id} value={tag.tag} className='py-2 border-b-1 border-sky-600'>
-            {tag.tag}
-          </option>
-        ))}
-      </select>
-
-      {selectedTags.length > 0 && (
-        <div className="max-w-50 text-sm text-gray-600">
-          Selected: {selectedTags.join(', ')}
-        </div>
-      )}
-      {/* clear tags button */}
-      <div>
-        <button onClick={() => setSelectedTags([])} className={styles.clear_btn}>Clear Tags</button>
-      </div>
-
+        placeholder="Select tags..."
+        styles={dropdownStyles}
+      />
     </div>
   );
 }
