@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { getTags } from '@/util/getResourceData';
-import styles from './SearchBar.module.css';
 
 function TagDropdown({ onTagSelect }) {
   const [tags, setTags] = useState([]);
