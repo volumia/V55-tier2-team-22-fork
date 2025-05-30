@@ -31,7 +31,7 @@ export function computePageIndex(itemIndex, pageSize) {
 }
 
 /**
- * Computes the number of pages represented by a number of items included by pages of a size.
+ * Computes the maximum number of pages representable by a number of items.
  * @param {number} totalItems The total number of items.
  * @param {number} pageSize The maximum number of items in one page.
  * @returns {number|null} The total number of pages. Will instead be null if any of the arguments are invalid.
@@ -47,7 +47,7 @@ export function computeTotalNumberOfPages(totalItems, pageSize) {
 /**
  * @param {number} pageIndex The page index.
  * @param {number} pageSize The maximum number of items in one page.
- * @returns {{min: number, max: number}} The range bounded by the page.
+ * @returns {{min: number, max: number}} The range of items that the page represents.
  */
 export function computeRangeFromPageIndex(pageIndex, pageSize) {
   return {
@@ -78,12 +78,11 @@ export function computePageArrangement(itemIndex, totalItems, pageSize, maxLengt
   let numberOfPreviousPages = centralPageIndex;
   let numberOfNextPages = totalPages - centralPageIndex - 1;
 
-  // We subtract `pagesToAdd` by 1 since the the central page's index has already been added to `arrangement`.
-  let pagesToAdd = totalPages - 1;
+  // We can't add more pages than the number of pages that actually exist.
+  // This is also important to prevent an infinite while loop.
+  let pagesToAdd = numberOfPreviousPages + numberOfNextPages;
   if (maxLength != undefined) {
-    // We can't add more pages than the number of pages that actually exist.
-    // This also prevents an infinite while loop.
-    pagesToAdd = Math.min(totalPages, maxLength) - 1;
+    pagesToAdd = Math.min(pagesToAdd, maxLength - 1);
   }
 
   // Alternate between adding page indexes to the left and to the right of the central page index.
