@@ -3,11 +3,10 @@ import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
 import { getResources, getTags } from '@/util/getResourceData';
 
-function ResourceList() {
+function ResourceList({ displayRange }) {
   const [resources, setResources] = useState([]);
   const [tagMap, setTagMap] = useState(null); // null until loaded
   const [status, setStatus] = useState('loading'); //loading, failed, succeeded
-  const [visibleArticles, setVisibleArticles] = useState(6);
 
   async function fetchData() {
       setStatus('loading')
@@ -61,7 +60,7 @@ function ResourceList() {
   return (
     <>
       <div className={styles.resource_section}>
-        {resources.slice(0, visibleArticles).map(resource => {
+        {resources.slice(displayRange.start, displayRange.end).map(resource => {
           // Convert tag IDs to tag names
           const convertedTag = (resource.appliedTags || []).map(
             (id) => tagMap[id] || 'Unknown'
@@ -78,16 +77,6 @@ function ResourceList() {
             />
           );
         })}
-      </div>
-
-
-
-      <div className={styles.load_more}>
-        {visibleArticles < resources.length && (
-          <button onClick={() => setVisibleArticles(prev => prev + 3)}>
-            Load More
-          </button>
-        )}
       </div>
     </>
   );
