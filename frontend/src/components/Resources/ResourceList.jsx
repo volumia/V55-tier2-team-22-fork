@@ -69,7 +69,7 @@ function ResourceList({ displayRange , selectedTags}) {
 
   return (
     <>
-      <div className={styles.resource_section}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {filteredResources.slice(displayRange.start, displayRange.end).map(resource => {
           // Convert tag IDs to tag names
           const convertedTag = (resource.appliedTags || []).map(
