@@ -3,35 +3,35 @@ import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
 import { getResources, getTags } from '@/util/getResourceData';
 
-function ResourceList({ displayRange , selectedTags}) {
+function ResourceList({ displayRange, selectedTags }) {
   const [resources, setResources] = useState([]);
   const [tagMap, setTagMap] = useState(null); // null until loaded
   const [status, setStatus] = useState('loading'); //loading, failed, succeeded
 
   async function fetchData() {
-      setStatus('loading')
-      try {
-        const [resourcesData, tagsData] = await Promise.all([
-          getResources(),
-          getTags(),
-        ]);
+    setStatus('loading')
+    try {
+      const [resourcesData, tagsData] = await Promise.all([
+        getResources(),
+        getTags(),
+      ]);
 
-        // Convert tags into a map using string keys
-        const tagMapObj = {};
-        tagsData.forEach(tag => {
-          tagMapObj[String(tag.id)] = tag.tag;
-        });
+      // Convert tags into a map using string keys
+      const tagMapObj = {};
+      tagsData.forEach(tag => {
+        tagMapObj[String(tag.id)] = tag.tag;
+      });
 
-        setResources(resourcesData);
-        setTagMap(tagMapObj); // set AFTER map is ready
-        setStatus('succeeded');
-      }
-
-      catch (error) {
-        console.error('Failed to fetch resources or tags:', error);
-        setStatus('failed');
-      }
+      setResources(resourcesData);
+      setTagMap(tagMapObj); // set AFTER map is ready
+      setStatus('succeeded');
     }
+
+    catch (error) {
+      console.error('Failed to fetch resources or tags:', error);
+      setStatus('failed');
+    }
+  }
 
 
   useEffect(() => {
@@ -61,10 +61,10 @@ function ResourceList({ displayRange , selectedTags}) {
   const filteredResources = selectedTags.length === 0
     ? resources
     : resources.filter(resource => {
-        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
-        // Check if resource has any tag from selectedTags
-        return selectedTags.some(tag => resourceTagNames.includes(tag));
-      });
+      const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
+      // Check if resource has any tag from selectedTags
+      return selectedTags.some(tag => resourceTagNames.includes(tag));
+    });
 
 
   return (
