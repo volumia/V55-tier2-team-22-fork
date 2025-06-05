@@ -8,6 +8,7 @@ import PaginationBar from "./components/Pagination/PaginationBar";
 import { computeRangeFromPageIndex } from "./util/pagination";
 import TagDropdown from "./components/SearchBar/TagDropdown";
 import { getResources, getTags } from "@/util/getResourceData";
+import ChatWindow from "./components/AIChat/ChatWindow";
 
 const initialPageIndex = 0;
 const pageSize = 9;
@@ -89,6 +90,8 @@ function App() {
     <>
       {/* Header of the App */}
       <Header total={resources.length} />
+
+      <ChatWindow></ChatWindow>
 
       {/* Search Bar */}
       <SearchBar />
