@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiResponser } from "@/util/aiChat/aiResponder";
-import { MdCloseFullscreen } from "react-icons/md";
 import BotAvatar from "./BotAvatar";
+import { MdCloseFullscreen } from "react-icons/md";
+import { VscSparkleFilled } from "react-icons/vsc";
 
 function ChatMessage({ text, type }) {
   if (type === "user") {
@@ -22,7 +23,7 @@ function ChatMessage({ text, type }) {
   }
 }
 
-function ChatWindow() {
+function ChatWindow({ isOpen, onClose }) {
   const [messages, setMessages] = useState([]);
   const inputEl = useRef(null);
   const responder = useRef(new AiResponser());
@@ -59,12 +60,27 @@ function ChatWindow() {
     inputEl.current.value = "";
   }
 
+  useEffect(() => {
+    if (isOpen) {
+      inputEl.current.focus();
+      inputEl.current.scrollIntoView({ block: "end" });
+    }
+  }, [isOpen]);
+
   return (
     <>
-      <div className="w-80 bg-gray-950 border-1 border-gray-500 rounded-sm">
+      <div className={"w-80 bg-gray-950 border-1 border-gray-500 rounded-sm" + " " + (!isOpen && "hidden")}>
         {/* Header */}
-        <div className="flex flex-row justify-end items-center w-full h-10 px-1 py-2 bg-gray-800">
-          <button className="w-8 h-8 p-0 flex justify-center items-center bg-transparent hover:bg-gray-600 active:bg-gray-500">
+        <div className="flex flex-row justify-start items-center w-full h-10 px-2 py-2 bg-gray-800">
+          <VscSparkleFilled></VscSparkleFilled>
+          <span className="ms-2">AI Assistant</span>
+
+          <div className="grow-1"></div>
+
+          <button
+            onClick={onClose}
+            className="w-8 h-8 p-0 flex justify-center items-center rounded-sm bg-transparent hover:bg-gray-600 active:bg-gray-500"
+          >
             <MdCloseFullscreen></MdCloseFullscreen>
           </button>
         </div>
@@ -79,9 +95,9 @@ function ChatWindow() {
         {/* Texting area */}
         <form onSubmit={onSubmit} className="w-full h-12 p-2 mt-6 ml-auto mr-auto bg-gray-800 text-gray-50">
           <input
+            ref={inputEl}
             type="text"
             placeholder="Ask a question"
-            ref={inputEl}
             className="w-full h-full p-2 bg-gray-700 rounded-sm"
           ></input>
         </form>
