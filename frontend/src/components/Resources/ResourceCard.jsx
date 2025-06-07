@@ -4,6 +4,7 @@ function ResourceCard({ title, url, author, date, tags }) {
   const createdAt = new Date(date);
 
   return (
+
     <div className="grid grid-rows-[auto_1fr_auto] bg-white rounded-2xl text-black p-4 m-3 min-h-[20em] w-full shadow">
       {/* Card header */}
       <div className="border-b-2 border-cyan-500 min-h-[100px] flex items-center text-center">
