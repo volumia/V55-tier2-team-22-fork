@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AiResponser } from "@/util/aiChat/aiResponder";
 import { MdCloseFullscreen } from "react-icons/md";
 import { VscSparkleFilled } from "react-icons/vsc";
@@ -8,6 +8,7 @@ function ChatWindow({ isOpen, onClose }) {
   const [messages, setMessages] = useState([]);
   const inputEl = useRef(null);
   const responder = useRef(new AiResponser());
+  const messageAreaEl = useRef(null);
 
   function addMessage(msg) {
     setMessages((curr) => [
@@ -55,6 +56,10 @@ function ChatWindow({ isOpen, onClose }) {
     }
   }, [isOpen]);
 
+  useLayoutEffect(() => {
+    messageAreaEl.current.scroll(0, messageAreaEl.current.scrollHeight);
+  }, [messages])
+
   return (
     <>
       <div className={"w-80 bg-gray-950 border-1 border-gray-500 rounded-sm" + " " + (!isOpen && "hidden")}>
@@ -74,14 +79,14 @@ function ChatWindow({ isOpen, onClose }) {
         </div>
 
         {/* Message area */}
-        <div className="h-80 px-2 overflow-y-scroll">
+        <div ref={messageAreaEl} className="h-90 px-2 overflow-y-scroll">
           {messages.map((m) => {
             return <ChatMessage key={m.key} text={m.text} source={m.source} type={m.type}></ChatMessage>;
           })}
         </div>
 
         {/* Texting area */}
-        <form onSubmit={onSubmit} className="w-full h-12 p-2 mt-6 ml-auto mr-auto bg-gray-800 text-gray-50">
+        <form onSubmit={onSubmit} className="w-full h-12 p-2 ml-auto mr-auto bg-gray-800 text-gray-50">
           <input
             ref={inputEl}
             type="text"
