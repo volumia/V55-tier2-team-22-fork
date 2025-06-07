@@ -1,38 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { AiResponser } from "@/util/aiChat/aiResponder";
-import BotAvatar from "./BotAvatar";
 import { MdCloseFullscreen } from "react-icons/md";
 import { VscSparkleFilled } from "react-icons/vsc";
-
-function ChatMessage({ text, source, type }) {
-  if (source === "user") {
-    return (
-      <div className="min-w-8 w-fit max-w-5/6 px-2 py-2 my-3 ml-auto bg-gray-50 text-gray-950 rounded-sm rounded-tr-none wrap-break-word">
-        {text}
-      </div>
-    );
-  } else if (source === "ai") {
-    if (type === "error") {
-      return (
-        <div className="flex flex-row my-3">
-          <BotAvatar></BotAvatar>
-          <div className="w-5/6 px-2 py-2 ml-2 mr-auto bg-red-300 text-red-950 border-1 border-red-700 rounded-sm rounded-tl-none wrap-break-word">
-            {text}
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="flex flex-row my-3">
-          <BotAvatar></BotAvatar>
-          <div className="w-5/6 px-2 py-2 ml-2 mr-auto bg-gray-50 text-gray-950 rounded-sm rounded-tl-none wrap-break-word">
-            {text}
-          </div>
-        </div>
-      );
-    }
-  }
-}
+import ChatMessage from "./ChatMessage";
 
 function ChatWindow({ isOpen, onClose }) {
   const [messages, setMessages] = useState([]);
