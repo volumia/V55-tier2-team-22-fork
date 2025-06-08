@@ -22,7 +22,7 @@
 .remove_icon {
   position: absolute;
   right: 0.75em;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   cursor: pointer;
   font-weight: bold;
@@ -33,6 +33,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  margin: 0;
 
   &:hover,
   &:focus,
@@ -41,4 +42,16 @@
     border: none;
     outline: none;
   }
+}
+
+.clear_button {
+
+  width: 100%;
+  background-color: #888;
+  text-align: center;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  margin: 0;
+  border-radius: 0;
 }

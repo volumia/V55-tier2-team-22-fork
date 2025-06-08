@@ -1,10 +1,6 @@
-import { useState } from 'react';
 import styles from './SearchBar.module.css';
 
-function SearchBar() {
-
-
-  const [searchTerm, setSearchTerm] = useState('');
+function SearchBar({ searchTerm, setSearchTerm, onClearAll, selectedTags }) {
 
   return (
     <div className={styles.input_container}>
@@ -17,6 +13,17 @@ function SearchBar() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
+      {/* Clear all button */}
+      {(searchTerm || (selectedTags && selectedTags.length > 0)) && (
+        <button
+          className={styles.clear_button}
+          onClick={onClearAll}
+        >
+          clear all
+        </button>
+      )}
+
+      {/* Remove icon */}
       {searchTerm && (
         <button
           className={styles.remove_icon}

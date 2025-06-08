@@ -16,11 +16,19 @@ function App() {
   const [resources, setResources] = useState([]);
   const [itemDisplayRange, setItemDisplayRange] = useState(computeRangeFromPageIndex(initialPageIndex, pageSize));
   // for searching by Tags
-  const [ selectedTags, setSelectedTags ] = useState([])
+  const [selectedTags, setSelectedTags] = useState([]);
+  // for search input
+  const [searchTerm, setSearchTerm] = useState('');
 
   function onPageIndexChange(index) {
     setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
   }
+
+  // Clear all function
+  const handleClearAll = () => {
+    setSearchTerm('');
+    setSelectedTags([]);
+  };
 
   useEffect(() => {
     async function initResources() {
@@ -37,13 +45,21 @@ function App() {
       <Header />
 
       {/* Search Bar */}
-      <SearchBar />
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        onClearAll={handleClearAll}
+        selectedTags={selectedTags}
+      />
 
       {/* Tags Dropdown Selection */}
-      <TagDropdown onTagSelect={setSelectedTags}/>
+      <TagDropdown
+        onTagSelect={setSelectedTags}
+        selectedTags={selectedTags}
+      />
 
       {/* Show the resources fetched from the API */}
-      <ResourceList displayRange={itemDisplayRange} selectedTags={selectedTags}/>
+      <ResourceList displayRange={itemDisplayRange} selectedTags={selectedTags} />
 
       {/* Pagination */}
       <PaginationBar
