@@ -1,11 +1,16 @@
 import { GoogleGenAI } from "@google/genai";
 
 const aiContext =
-  "You are a helper bot for a search engine application. Prefer short responses. Be professional. " +
   "Use the following context information to answer the next question: " +
-  "1. The purpose of this app is help users find developer resources in an organized manner. " +
-  "2. The user can filter resources by title or author by using the search bar at the top of the page." +
-  "3. The user can also filter resources by tag type by using the tag dropdown at the top of the page. ";
+  "* You are a helper bot designed to help the user using this application/website. Prefer short responses. Be professional. " +
+  "* The purpose of this app is help users find developer resources in an organized manner. " +
+  "* Resources are organized as cards in the middle of the page. " +
+  "* The user can flip through card pages by using the pagination bar at the bottom. " +
+  "* The user can sort resources by type in ascending or descending order by using the dropdown at the top of the page. " +
+  "* The user can filter resources by title or author, by using the search bar at the top of the page." +
+  "* The user can filter resources by tag type, by using the tag dropdown at the top of the page. "
+  // The AI keeps saying there's a "save resource" feature for some reason! I don't know why!
+  "* There is no 'save resource' feature in this application. ";
 
 export class AiResponser {
   constructor() {
