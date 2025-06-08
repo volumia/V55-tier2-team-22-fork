@@ -2,60 +2,7 @@
 @import "tailwindcss";
 
 /* Global styles for standard HTML elements should go here. */
-
-/* Colors */
-
-
-:root {
-  --primary-blue-dark: #0f5fa6; /* Blue1 */
-  --secondary-blue: #0a8cbf; /* Blue2 */
-  --accent-blue: #04b2d9; /* Blue3 */
-  --highlight-blue: #05dbf2; /* Blue4 */
-  --black: #0d0d0d; /* Black */
-  --white: white;
-}
-
-body {
-  background-color: var(--black);
-  color: var(--white);
-  margin: 0 auto;
-  width: 80%;
-  font-family: "Roboto", sans-serif;
-}
-
-button {
-  background-color: var(--primary-blue-dark);
-  color: var(--white);
-  border: none;
-  border-radius: 20px;
-  padding: 0.4em 1.3em;
-  font-variant: small-caps;
-  margin: 20px 0;
-  border: 2px solid transparent;
-  font-size: 1em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s;
-}
-
-button:hover {
-  background-color: var(--accent-blue);
-}
-
-button:active {
-  background-color: var(--accent-blue);
-  border-color: var(--highlight-blue);
-}
-
-a {
-  color: var(--accent-blue);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--primary-blue-dark);
-  text-decoration: underline dotted var(--accent-blue);
+/* All styles should go inside the @layer base block to allow TailwindCSS to override them easily. */
 
 @layer base {
   :root {
@@ -72,6 +19,7 @@ a:hover {
     color: var(--white);
     margin: 0 auto;
     width: 80%;
+    font-family: "Roboto", sans-serif;
   }
 
   button {
@@ -109,6 +57,4 @@ a:hover {
     color: var(--primary-blue-dark);
     text-decoration: underline dotted var(--accent-blue);
   }
-
-}
 }
