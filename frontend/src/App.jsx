@@ -5,28 +5,21 @@ import ResourceList from "./components/Resources/ResourceList";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import { useMemo, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
-import { computeRangeFromPageIndex } from "./util/pagination";
 import TagDropdown from "./components/SearchBar/TagDropdown";
 import ChatWindow from "./components/AIChat/ChatWindow";
 import OpenAiChatButton from "./components/AIChat/OpenChatButton";
 import SortButton from "./components/SortButton/SortDropdown.jsx";
 import useFilterAndSort, { filterByTextAndTags, sortByTitleOrDate } from "./hooks/useFilterAndSort";
 import useResourceData from "./hooks/useResourceData";
+import { usePaginator } from "./hooks/usePaginator";
 
-const initialPageIndex = 0;
-const pageSize = 9;
+const displaySettings = {
+  pageSize: 9
+};
 
 function App() {
-  const {
-    resources,
-    idToTagMap,
-    status,
-    fetchData
-  } = useResourceData();
-  
-  const [itemDisplayRange, setItemDisplayRange] = useState(
-    computeRangeFromPageIndex(initialPageIndex, pageSize)
-  );
+  const { resources, idToTagMap, status, fetchData } = useResourceData();
+  const { itemDisplayRange, goToPage: goToListPage } = usePaginator(displaySettings.pageSize);
 
   // Filter options
   const [selectedTags, setSelectedTags] = useState([]);
@@ -58,7 +51,7 @@ function App() {
   const [isAiChatWindowOpen, setIsAiChatWindowOpen] = useState(false);
 
   function onPageIndexChange(index) {
-    setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
+    goToListPage(index);
   }
 
   // for sorting
@@ -73,7 +66,7 @@ function App() {
     setSelectedTags([]);
     setSortBy("title");
     setSortOrder("asc");
-    setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
+    goToListPage(0);
   }
 
   // if remote server fails
@@ -121,8 +114,7 @@ function App() {
         selectedTags={selectedTags}
         onTagSelect={(tags) => {
           setSelectedTags(tags);
-          // update pagination based on tags
-          setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
+          goToListPage(0);
         }}
       />
 
@@ -134,7 +126,7 @@ function App() {
       {/* Pagination */}
       <PaginationBar
         firstItemIndex={itemDisplayRange.start}
-        pageSize={pageSize}
+        pageSize={displaySettings.pageSize}
         totalItems={filteredResources.length}
         maxVisiblePageButtons={5}
         onChangePage={onPageIndexChange}
