@@ -9,7 +9,9 @@ import TagDropdown from "./components/SearchBar/TagDropdown";
 import ChatWindow from "./components/AIChat/ChatWindow";
 import OpenAiChatButton from "./components/AIChat/OpenChatButton";
 import SortDropdown from "./components/SortDropdown/SortDropdown.jsx";
-import useFilterAndSort, { filterByTextAndTags, sortByTitleOrDate } from "./hooks/useFilterAndSort";
+import { useFilterAndSort } from "./hooks/useFilterAndSort";
+import { filterByTextAndTags } from "./util/resources/filter";
+import { sortByTitleOrDate } from "./util/resources/sort";
 import useResourceData from "./hooks/useResourceData";
 import { usePaginator } from "./hooks/usePaginator";
 
@@ -36,7 +38,7 @@ function App() {
   );
 
   // Filter resources based on search term and selected tags.
-  // Using a memo prevents delayed render bugs.
+  // Using useMemo instead of useState prevents delayed render bugs.
   const filteredResources = useMemo(filterAndSortResources, [
     filterAndSortResources,
     resources,
