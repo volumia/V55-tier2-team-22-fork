@@ -8,7 +8,7 @@ import PaginationBar from "./components/Pagination/PaginationBar";
 import TagDropdown from "./components/SearchBar/TagDropdown";
 import ChatWindow from "./components/AIChat/ChatWindow";
 import OpenAiChatButton from "./components/AIChat/OpenChatButton";
-import SortButton from "./components/SortButton/SortDropdown.jsx";
+import SortDropdown from "./components/SortDropdown/SortDropdown.jsx";
 import useFilterAndSort, { filterByTextAndTags, sortByTitleOrDate } from "./hooks/useFilterAndSort";
 import useResourceData from "./hooks/useResourceData";
 import { usePaginator } from "./hooks/usePaginator";
@@ -118,7 +118,7 @@ function App() {
         }}
       />
 
-      <SortButton sortBy={sortBy} sortOrder={sortOrder} onSortChange={handleSortChange} />
+      <SortDropdown sortBy={sortBy} sortOrder={sortOrder} onSortChange={handleSortChange} />
 
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={idToTagMap} />
