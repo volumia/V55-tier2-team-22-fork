@@ -3,47 +3,47 @@ import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
 import { computeRangeFromPageIndex } from "./util/pagination";
 import TagDropdown from "./components/SearchBar/TagDropdown";
-import { getResources, getTags } from "@/util/getResourceData";
 import ChatWindow from "./components/AIChat/ChatWindow";
 import OpenAiChatButton from "./components/AIChat/OpenChatButton";
 import SortButton from "./components/SortButton/SortDropdown.jsx";
 import useFilterAndSort, { filterByTextAndTags, sortByTitleOrDate } from "./hooks/useFilterAndSort";
+import useResourceData from "./hooks/useResourceData";
 
 const initialPageIndex = 0;
 const pageSize = 9;
 
 function App() {
-  const [resources, setResources] = useState([]);
-  const [tagMap, setTagMap] = useState(null); // null until loaded
-  const [status, setStatus] = useState("loading"); //loading, failed, succeeded
-  const [isAiChatWindowOpen, setIsAiChatWindowOpen] = useState(false);
-
-  // for pagination
+  const {
+    resources,
+    idToTagMap,
+    status,
+    fetchData
+  } = useResourceData();
+  
   const [itemDisplayRange, setItemDisplayRange] = useState(
     computeRangeFromPageIndex(initialPageIndex, pageSize)
   );
-  // for searching by Tags
-  const [selectedTags, setSelectedTags] = useState([]);
 
-  // Add search term state
+  // Filter options
+  const [selectedTags, setSelectedTags] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // for sorting button
+  // Sorting options
   const [sortBy, setSortBy] = useState("title");
   const [sortOrder, setSortOrder] = useState("asc");
 
   const { filterAndSortResources } = useFilterAndSort(
     resources,
-    (recs) => filterByTextAndTags(recs, searchTerm, selectedTags, tagMap),
+    (recs) => filterByTextAndTags(recs, searchTerm, selectedTags, idToTagMap),
     (recs) => sortByTitleOrDate(recs, sortBy, sortOrder)
   );
 
-  // Filter resources based on search term and select tags.
-  // Using a memo prevents delayed-by-one-render bugs.
+  // Filter resources based on search term and selected tags.
+  // Using a memo prevents delayed render bugs.
   const filteredResources = useMemo(filterAndSortResources, [
     filterAndSortResources,
     resources,
@@ -53,33 +53,9 @@ function App() {
     sortOrder
   ]);
 
-  async function fetchData() {
-    setStatus("loading");
-    try {
-      const [resourcesData, tagsData] = await Promise.all([getResources(), getTags()]);
-
-      // Convert tags into a map using string keys
-      const tagMapObj = {};
-      tagsData.forEach((tag) => {
-        tagMapObj[String(tag.id)] = tag.tag;
-      });
-
-      setResources(resourcesData);
-      setTagMap(tagMapObj); // set AFTER map is ready
-      setStatus("succeeded");
-    } catch (error) {
-      console.error("Failed to fetch resources or tags:", error);
-      setStatus("failed");
-    }
-  }
-
-  // fetch data from remote API - call function
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // Paginate
   const visibleResources = filteredResources.slice(itemDisplayRange.start, itemDisplayRange.end);
+
+  const [isAiChatWindowOpen, setIsAiChatWindowOpen] = useState(false);
 
   function onPageIndexChange(index) {
     setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
@@ -111,7 +87,7 @@ function App() {
     );
   }
 
-  if (status === "loading" || !tagMap) {
+  if (status === "loading") {
     return (
       <div className="loading">
         <h2>Fetching Data...</h2>
@@ -153,7 +129,7 @@ function App() {
       <SortButton sortBy={sortBy} sortOrder={sortOrder} onSortChange={handleSortChange} />
 
       {/* Show the resources fetched from the API */}
-      <ResourceList resourceList={visibleResources} tagMap={tagMap} />
+      <ResourceList resourceList={visibleResources} tagMap={idToTagMap} />
 
       {/* Pagination */}
       <PaginationBar
