@@ -3,7 +3,7 @@ import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
 import { computeRangeFromPageIndex } from "./util/pagination";
 import TagDropdown from "./components/SearchBar/TagDropdown";
@@ -11,6 +11,7 @@ import { getResources, getTags } from "@/util/getResourceData";
 import ChatWindow from "./components/AIChat/ChatWindow";
 import OpenAiChatButton from "./components/AIChat/OpenChatButton";
 import SortButton from "./components/SortButton/SortDropdown.jsx";
+import useFilterAndSort, { filterByTextAndTags, sortByTitleOrDate } from "./hooks/useFilterAndSort";
 
 const initialPageIndex = 0;
 const pageSize = 9;
@@ -34,6 +35,23 @@ function App() {
   // for sorting button
   const [sortBy, setSortBy] = useState("title");
   const [sortOrder, setSortOrder] = useState("asc");
+
+  const { filterAndSortResources } = useFilterAndSort(
+    resources,
+    (recs) => filterByTextAndTags(recs, searchTerm, selectedTags, tagMap),
+    (recs) => sortByTitleOrDate(recs, sortBy, sortOrder)
+  );
+
+  // Filter resources based on search term and select tags.
+  // Using a memo prevents delayed-by-one-render bugs.
+  const filteredResources = useMemo(filterAndSortResources, [
+    filterAndSortResources,
+    resources,
+    searchTerm,
+    selectedTags,
+    sortBy,
+    sortOrder
+  ]);
 
   async function fetchData() {
     setStatus("loading");
@@ -59,33 +77,6 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  // Filter resources based on selectedTags and search term
-  const filteredResources = (
-    selectedTags.length === 0 && !searchTerm
-      ? resources
-      : resources.filter((resource) => {
-        // Filter by search term
-        const matchesSearch = !searchTerm ||
-          resource.name.toLowerCase().includes(searchTerm.toLowerCase());
-
-        // Filter by tags
-        const matchesTags = selectedTags.length === 0 ||
-          (() => {
-            const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
-            return selectedTags.some((tag) => resourceTagNames.includes(tag));
-          })();
-
-        return matchesSearch && matchesTags;
-      })
-  ).sort((a, b) => {
-    let aValue = sortBy === "title" ? a.name.toLowerCase() : a.createdAt;
-    let bValue = sortBy === "title" ? b.name.toLowerCase() : b.createdAt;
-
-    if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
-    if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
-    return 0;
-  });
 
   // Paginate
   const visibleResources = filteredResources.slice(itemDisplayRange.start, itemDisplayRange.end);
@@ -159,11 +150,7 @@ function App() {
         }}
       />
 
-      <SortButton
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSortChange={handleSortChange}
-      />
+      <SortButton sortBy={sortBy} sortOrder={sortOrder} onSortChange={handleSortChange} />
 
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={tagMap} />
