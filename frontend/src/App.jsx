@@ -8,15 +8,19 @@ import PaginationBar from "./components/Pagination/PaginationBar";
 import { computeRangeFromPageIndex } from "./util/pagination";
 import TagDropdown from "./components/SearchBar/TagDropdown";
 import { getResources, getTags } from "@/util/getResourceData";
+import ChatWindow from "./components/AIChat/ChatWindow";
+import OpenAiChatButton from "./components/AIChat/OpenChatButton";
+import SortButton from "./components/SortButton/SortDropdown.jsx";
 
 const initialPageIndex = 0;
 const pageSize = 9;
-import SortButton from "./components/SortButton/SortDropdown.jsx";
 
 function App() {
   const [resources, setResources] = useState([]);
   const [tagMap, setTagMap] = useState(null); // null until loaded
   const [status, setStatus] = useState("loading"); //loading, failed, succeeded
+  const [isAiChatWindowOpen, setIsAiChatWindowOpen] = useState(false);
+
   // for pagination
   const [itemDisplayRange, setItemDisplayRange] = useState(
     computeRangeFromPageIndex(initialPageIndex, pageSize)
@@ -127,6 +131,13 @@ function App() {
 
   return (
     <>
+      <div className="fixed right-4 bottom-4 z-10">
+        <ChatWindow isOpen={isAiChatWindowOpen} onClose={() => setIsAiChatWindowOpen(false)}></ChatWindow>
+        {!isAiChatWindowOpen && (
+          <OpenAiChatButton onClick={() => setIsAiChatWindowOpen(true)}></OpenAiChatButton>
+        )}
+      </div>
+
       {/* Header of the App */}
       <Header total={resources.length} />
 
