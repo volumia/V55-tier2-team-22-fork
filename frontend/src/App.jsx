@@ -106,7 +106,10 @@ function App() {
       {/* Search Bar */}
       <SearchBar
         searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
+        setSearchTerm={(term) => {
+          setSearchTerm(term);
+          goToListPage(0);
+        }}
         onClearAll={handleClearAll}
         selectedTags={selectedTags}
       />
