@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getResources, getTags } from "@/util/getResourceData";
 
-function useResourceData() {
+export function useResourceData() {
   const [status, setStatus] = useState("loading"); //loading, failed, succeeded
   const [resources, setResources] = useState([]);
   const [tags, setTags] = useState(null); // null until loaded
@@ -41,5 +41,3 @@ function useResourceData() {
     fetchData
   };
 }
-
-export default useResourceData;
