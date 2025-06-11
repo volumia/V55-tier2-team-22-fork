@@ -3,6 +3,19 @@
 
 /* Global styles for standard HTML elements should go here. */
 /* All styles should go inside the @layer base block to allow TailwindCSS to override them easily. */
+@theme {
+  --color-mono-50: rgb(255, 255, 255);
+  --color-mono-100: rgb(231, 231, 231);
+  --color-mono-200: rgb(208, 208, 208);
+  --color-mono-300: rgb(185, 185, 185);
+  --color-mono-400: rgb(162, 162, 162);
+  --color-mono-500: rgb(115, 115, 115);
+  --color-mono-600: rgb(92, 92, 92);
+  --color-mono-700: rgb(69, 69, 69);
+  --color-mono-800: rgb(46, 46, 46);
+  --color-mono-900: rgb(23, 23, 23);
+  --color-mono-950: rgb(0, 0, 0);
+}
 
 @layer base {
   :root {
