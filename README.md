@@ -1,14 +1,14 @@
 # 📚Table of Contents
 
 - [Project Overview](#project-overview)
-- [Live Link](#live-site)
+- [Live Link](#live-link)
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
-- [Technologies & Dependencies Used](#technologies--dependencies-used)
+- [Technologies & Dependencies](#technologies--dependencies)
 - [Prerequisites](#prerequisites)
 - [Clone & Run Locally](#clone--run-locally)
-- [Team](#our-team)
+- [Our Team](#our-team)
 - [Special Thanks](#special-thanks)
 
 
@@ -38,7 +38,7 @@ Check the website out: https://dev.v55-team22.pages.dev/
 
 ## Technologies & Dependencies
 
-|***dependencies***                                            |
+|***dependencies***  |                      |                  |
 |--------------------|----------------------|------------------|
 | react              | google/generative-ai | estlint          |
 | react-dom          | tailwindcss          |                  |
@@ -74,15 +74,11 @@ Open browser
 ```http://localhost:5173/```
 
 
-## 👥 Our Team
+## Our Team
 
-### Project Manager
+### Project Manager:  Khalid
 
-####  Khalid
-
-### UI/UX Designer
-
-#### Sophie
+### UI/UX Designer: Sophie
 
 ### Scrum Masters
 
@@ -103,7 +99,7 @@ Open browser
 - Micheal: [GitHub](https://github.com/Izunnaya) / [LinkedIn](https://www.linkedin.com/in/michael-ugorji/)
 
 
-## 🙏 Special Thanks
+## Special Thanks
 
 We as a whole team would like to thank the **Chingu** platform and community for this opportunity to learn, improve, and collaborate.
 
