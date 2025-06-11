@@ -3,44 +3,49 @@ import Select from "react-select";
 import { getTags } from "@/util/getResourceData";
 
 // Styles for <Select> component.
-// This object is declared outside of this component so it isn't recreated every render, 
+// This object is declared outside of this component so it isn't recreated every render,
 // and also since styles are the same between instances of this component.
 const dropdownStyles = {
   control: (base) => ({
     ...base,
-    backgroundColor: "black",
-    borderColor: "#05dbf2",
-    color: "white",
-    margin: "1rem 0",
+    minWidth: "15rem",
     maxWidth: "50vw",
-    minWidth: "15rem"
+    margin: "1rem 0",
+    border: "1px solid var(--color-mono-200)",
+    backgroundColor: "var(--color-mono-50)",
+    color: "var(--color-mono-950)",
+    cursor: "pointer",
+    ":hover": {
+      borderColor: "var(--color-mono-200)"
+    }
   }),
   menu: (base) => ({
     ...base,
-    backgroundColor: "black",
-    color: "white"
+    backgroundColor: "var(--color-mono-50)"
   }),
-  option: (base, state) => ({
+  option: (base, {isFocused}) => ({
     ...base,
-    backgroundColor: state.isFocused ? "#0a8cbf" : "black",
-    color: "white",
+    backgroundColor: isFocused ? "var(--color-cyan-500)" : "var(--color-mono-50)",
+    color: isFocused ? "var(--color-cyan-50) " : "var(--color-mono-950)",
     cursor: "pointer"
   }),
   multiValue: (base) => ({
     ...base,
-    backgroundColor: "#111",
-    color: "#04b2d9" // background color
+    paddingLeft: "0.25rem",
+    border: "1px solid var(--color-cyan-600)",
+    borderRadius: "var(--radius-4xl)",
+    backgroundColor: "var(--color-cyan-400)"
   }),
   multiValueLabel: (base) => ({
     ...base,
-    color: "#04b2d9" // selected tag text color
+    color: "var(--color-cyan-950)"
   }),
   multiValueRemove: (base) => ({
     ...base,
-    color: "#04b2d9",
+    borderRadius: "0 var(--radius-4xl) var(--radius-4xl) 0",
+    color: "var(--color-cyan-950)",
     ":hover": {
-      backgroundColor: "#222",
-      color: "#fff"
+      backgroundColor: "var(--color-cyan-500)"
     }
   }),
   singleValue: (base) => ({
@@ -49,15 +54,33 @@ const dropdownStyles = {
   }),
   input: (base) => ({
     ...base,
-    color: "var(--color-gray-50)"
+    color: "var(--color-mono-950)"
   }),
   placeholder: (base) => ({
     ...base,
-    color: "var(--color-gray-400)"
+    color: "var(--color-mono-800)"
   }),
   noOptionsMessage: (base) => ({
     ...base,
-    color: "var(--color-gray-400)"
+    color: "var(--color-mono-800)"
+  }),
+  indicatorSeparator: (base) => ({
+    ...base,
+    backgroundColor: "var(--color-mono-300)"
+  }),
+  dropdownIndicator: (base) => ({
+    ...base,
+    color: "var(--color-mono-500)",
+    ":hover": {
+      color: "var(--color-mono-800)"
+    }
+  }),
+  clearIndicator: (base) => ({
+    ...base,
+    color: "var(--color-mono-500)",
+    ":hover": {
+      color: "var(--color-mono-800)"
+    }
   })
 };
 
