@@ -1,10 +1,9 @@
 /* Search Bar Styles */
 
 .input_container {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-top: 0.5em;
 }
 
@@ -27,6 +26,7 @@
   cursor: pointer;
   font-weight: bold;
   color: #888;
+  -webkit-user-select: none;
   user-select: none;
   font-size: 1.5rem;
   padding: 0;
@@ -45,12 +45,23 @@
 }
 
 .clear_button {
-  width: 100%;
-  background-color: #888;
+  display: block;
+  width: fit-content;
+  margin: 0.5rem auto;
+
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+
+  color: var(--color-cyan-500);
+  background-color: transparent;
+
   text-align: center;
   text-transform: capitalize;
-  border: none;
-  outline: none;
-  margin: 0;
-  border-radius: 0;
+  text-decoration: underline;
+}
+
+.clear_button:hover {
+  color: var(--color-cyan-400);
 }

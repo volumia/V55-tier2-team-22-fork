@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
+import NoResourcesFound from "./components/Resources/NoResourcesFound";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import { useMemo, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
@@ -26,6 +27,8 @@ function App() {
   // Filter options
   const [selectedTags, setSelectedTags] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchFilter, setSearchFilter] = useState("title");
+  const areFilterOptionsUsed = searchTerm || (selectedTags && selectedTags.length > 0);
 
   // Sorting options
   const [sortBy, setSortBy] = useState("title");
@@ -33,7 +36,7 @@ function App() {
 
   const { filterAndSortResources } = useFilterAndSort(
     resources,
-    (recs) => filterByTextAndTags(recs, searchTerm, selectedTags, idToTagMap),
+    (recs) => filterByTextAndTags(recs, searchTerm, searchFilter, selectedTags, idToTagMap),
     (recs) => sortByTitleOrDate(recs, sortBy, sortOrder)
   );
 
@@ -106,8 +109,13 @@ function App() {
       {/* Search Bar */}
       <SearchBar
         searchTerm={searchTerm}
+        searchFilter={searchFilter}
         setSearchTerm={(term) => {
           setSearchTerm(term);
+          goToListPage(0);
+        }}
+        setSearchFilter={(term) => {
+          setSearchFilter(term);
           goToListPage(0);
         }}
         onClearAll={handleClearAll}
@@ -132,7 +140,14 @@ function App() {
       </div>
 
       {/* Show the resources fetched from the API */}
-      <ResourceList resourceList={visibleResources} tagMap={idToTagMap} />
+      {filteredResources.length > 0 ? (
+        <ResourceList resources={visibleResources} tagMap={idToTagMap} />
+      ) : (
+        <NoResourcesFound
+          areFiltersUsed={areFilterOptionsUsed}
+          clearAllFilters={handleClearAll}
+        ></NoResourcesFound>
+      )}
 
       {/* Pagination */}
       <PaginationBar
