@@ -114,16 +114,23 @@ function App() {
         selectedTags={selectedTags}
       />
 
-      {/* Tags Dropdown Selection */}
-      <TagDropdown
-        selectedTags={selectedTags}
-        onTagSelect={(tags) => {
-          setSelectedTags(tags);
-          goToListPage(0);
-        }}
-      />
+      <div className="flex flex-col md:flex-row md:justify-evenly md:items-center pt-3 mb-12 border-b-1 border-cyan-500">
+        {/* Tags Dropdown Selection */}
+        <TagDropdown
+          selectedTags={selectedTags}
+          onTagSelect={(tags) => {
+            setSelectedTags(tags);
+            goToListPage(0);
+          }}
+        />
 
-      <SortDropdown sortBy={sortBy} sortOrder={sortOrder} onSortChange={handleSortChange} />
+        <SortDropdown
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSortChange={handleSortChange}
+        />
+
+      </div>
 
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={idToTagMap} />
