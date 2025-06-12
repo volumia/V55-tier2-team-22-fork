@@ -114,7 +114,7 @@ function App() {
         selectedTags={selectedTags}
       />
 
-      <div className="flex flex-col md:flex-row md:justify-evenly md:items-center pt-3 mb-12 border-b-1 border-cyan-500">
+      <div className="flex flex-col md:flex-row md:justify-evenly md:items-center py-5 my-12 border-b-1 border-cyan-500">
         {/* Tags Dropdown Selection */}
         <TagDropdown
           selectedTags={selectedTags}
