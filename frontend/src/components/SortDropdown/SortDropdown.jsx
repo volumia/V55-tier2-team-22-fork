@@ -13,7 +13,7 @@ function SortDropdown({ onSortChange, sortBy = "title", sortOrder = "asc" }) {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <button className={styles.sort_button} onClick={() => setShowOptions((prev) => !prev)}>
         Sort by
       </button>

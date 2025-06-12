@@ -2,16 +2,9 @@
     display: flex;
 }
 
-.container{
-    margin-top: 4em;
-    border-bottom: 1px solid var(--highlight-blue);
-    padding-bottom: 1em;
-}
-
 .toggleButton {
     display: flex;
     flex-direction: column;
-    align-items: left;
     background-color: transparent;
     border: none;
     font-size: 1rem;
@@ -20,8 +13,7 @@
 
 .sortOptions {
     background-color: aliceblue;
-    width: 30%;
-    
+    padding: 0.2rem;
 }
 
 .toggleButton:hover {
@@ -31,13 +23,11 @@
 
 .toggleBorder {
     border: .5px solid black;
-    margin: 0em 0.2em;
 }
 
 .active {
   background-color:aqua;
   border: 1px solid var(--highlight-blue);
-  margin: 0.1rem;
-  color: black;
+  color: var(--black);
   border-color: #888;
 }
