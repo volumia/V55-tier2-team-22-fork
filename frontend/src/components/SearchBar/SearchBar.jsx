@@ -1,6 +1,6 @@
 import styles from './SearchBar.module.css';
 
-function SearchBar({ searchTerm, setSearchTerm, onClearAll, selectedTags }) {
+function SearchBar({ searchTerm, setSearchTerm, onClearAll }) {
 
   return (
     <div className={styles.input_container}>
@@ -14,7 +14,7 @@ function SearchBar({ searchTerm, setSearchTerm, onClearAll, selectedTags }) {
       />
 
       {/* Clear all button */}
-      {(searchTerm || (selectedTags && selectedTags.length > 0)) && (
+      {(searchTerm) && (
         <button
           className={styles.clear_button}
           onClick={onClearAll}

@@ -111,7 +111,6 @@ function App() {
           goToListPage(0);
         }}
         onClearAll={handleClearAll}
-        selectedTags={selectedTags}
       />
 
       <div className="flex flex-col md:flex-row md:justify-evenly md:items-center py-5 my-12 border-b-1 border-cyan-500">
