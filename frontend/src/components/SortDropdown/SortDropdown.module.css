@@ -1,5 +1,10 @@
+.container {
+    position: relative;
+}
 .sort_button {
     display: flex;
+    padding: 8px 30px;
+    z-index: 1;
 }
 
 .toggleButton {
@@ -12,8 +17,13 @@
 }
 
 .sortOptions {
-    background-color: aliceblue;
-    padding: 0.2rem;
+    background-color: var(--white);
+    padding: 0.5rem;
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    box-shadow: 2px 2px 5px var(--black);
+    border-radius: 5px;
 }
 
 .toggleButton:hover {
@@ -22,7 +32,7 @@
 }
 
 .toggleBorder {
-    border: .5px solid black;
+    border: .5px solid var(--black);
 }
 
 .active {
