@@ -11,7 +11,7 @@ function Header({ total }) {
   return (
     <header className={styles.header}>
       <div className={`${styles.container} ${styles.header_bar}`}>
-        <img src={logo} alt="App Logo" />
+        <img src={logo} alt="App Logo" className={styles.img_logo} />
         <p className={styles.header_date}>{currentDate}</p>
       </div>
       <div className={`${styles.container} ${styles.header_mid}`}>
