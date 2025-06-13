@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import logo from '../../assets/logo.png'; // adjust path as needed
+import logo from '../../assets/logo.png'; 
 
 function Header({ total }) {
   const currentDate = new Date().toLocaleDateString("en-US", {
