@@ -28,12 +28,10 @@ A web app called **Resourcify** that enables developers to easily search, filter
 - AI feature to help navigate the App.
 
 ## Screenshots
-
+### App Overview
 ![App Overview](/frontend/public/app.png)
+### Search Features
 ![Search Feature](/frontend/public/search.png)
-
-|------------|--------------|
-| ![App Overview](/frontend/public/app.png) | ![Search Feature](/frontend/public/search.png)   |
 
 
 ## How it works
