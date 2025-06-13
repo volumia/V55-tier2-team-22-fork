@@ -121,7 +121,16 @@ function App() {
         onClearAll={handleClearAll}
       />
 
-      <div className="flex flex-col md:flex-row md:justify-evenly md:items-center py-5 my-12 border-b-1 border-cyan-500">
+      <div className="flex flex-col gap-x-4 gap-y-4 md:flex-row md:justify-center md:items-center py-5 my-12 border-b-1 border-cyan-500">
+        <SortDropdown
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSortChange={handleSortChange}
+        />
+
+        {/* Horizontal separator */}
+        <div className="w-[2px] h-8 bg-mono-800"></div>
+
         {/* Tags Dropdown Selection */}
         <TagDropdown
           selectedTags={selectedTags}
@@ -130,13 +139,6 @@ function App() {
             goToListPage(0);
           }}
         />
-
-        <SortDropdown
-          sortBy={sortBy}
-          sortOrder={sortOrder}
-          onSortChange={handleSortChange}
-        />
-
       </div>
 
       {/* Show the resources fetched from the API */}
