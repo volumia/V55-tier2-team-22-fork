@@ -3,8 +3,8 @@ import { HttpCacher } from "#src/cache/cacher";
 
 const router = express.Router();
 const cacher = new HttpCacher(
-  "cache/resources",
-  "https://seshatbe.up.railway.app/resources",
+  "cache/tags",
+  "https://seshatbe.up.railway.app/tags",
   3000,
   60
 );

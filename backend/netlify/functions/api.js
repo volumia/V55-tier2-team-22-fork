@@ -1,11 +1,10 @@
 import express from "express";
 import serverless from "serverless-http";
 import getResources from "#src/routes/getResources";
-import { preloadCache } from "#src/cache/resourceCache";
+import getTags from "#src/routes/getTags";
 
 const app = express();
-
-preloadCache();
-app.use("/api/data", getResources);
+app.use("/api/resources", getResources);
+app.use("/api/tags", getTags);
 
 export const handler = serverless(app);
