@@ -32,6 +32,9 @@ A web app called **Resourcify** that enables developers to easily search, filter
 ![App Overview](/frontend/public/app.png)
 ![Search Feature](/frontend/public/search.png)
 
+|------------|--------------|
+| ![App Overview](/frontend/public/app.png) | ![Search Feature](/frontend/public/search.png)   |
+
 
 ## How it works
 
