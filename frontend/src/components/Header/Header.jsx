@@ -15,9 +15,9 @@ function Header({ total }) {
         <p className={styles.header_date}>{currentDate}</p>
       </div>
       <div className={`${styles.container} ${styles.header_mid}`}>
-        <h1>Welcome to AppName </h1>
+        <h1>Welcome to RESOURCIFY!</h1>
         <p>
-          A collection of <b>{total}</b> resources for Developers and Designers, all in one place
+          A collection of <b>{total}</b> resources for Developers and Designers, all in one place.
         </p>
       </div>
     </header>
