@@ -6,7 +6,6 @@
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
 - [Technologies & Dependencies](#technologies--dependencies)
-- [Prerequisites](#prerequisites)
 - [Clone & Run Locally](#clone--run-locally)
 - [Our Team](#our-team)
 - [Special Thanks](#special-thanks)
@@ -18,7 +17,8 @@ A web app called **Resourcify** that enables developers to easily search, filter
 
 ## Live Link
 
-Check the website out: https://dev.v55-team22.pages.dev/
+ | [**Click Me**](https://v55-team22.pages.dev/) |
+|:-----------------------------------:|
 
 ## Features
 - Fetches a large pool of resources and displays them in an easy-to-navigate format.
@@ -28,6 +28,10 @@ Check the website out: https://dev.v55-team22.pages.dev/
 - AI feature to help navigate the App.
 
 ## Screenshots
+
+![App Overview](/frontend/public/app.png)
+![Search Feature](/frontend/public/search.png)
+
 
 ## How it works
 
@@ -46,8 +50,6 @@ Check the website out: https://dev.v55-team22.pages.dev/
 | vite               | prettier             |                  |
 | react-select       | vitest               |                  |
 
-
-## Prerequisites
 
 ## Clone & Run Locally
 
