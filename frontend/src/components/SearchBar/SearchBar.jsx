@@ -1,7 +1,14 @@
 import { IoSearchOutline } from "react-icons/io5";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ searchTerm, searchFilter, setSearchTerm, setSearchFilter, onClearAll }) {
+function SearchBar({
+  searchTerm,
+  searchFilter,
+  setSearchTerm,
+  setSearchFilter,
+  showClearButton,
+  onClearAll
+}) {
   return (
     <div>
       <div className="relative flex justify-center items-center gap-x-5 mx-auto w-full">
@@ -38,7 +45,7 @@ function SearchBar({ searchTerm, searchFilter, setSearchTerm, setSearchFilter, o
         </select>
       </div>
 
-      {searchTerm && (
+      {showClearButton && (
         <button className={styles.clear_button} onClick={onClearAll}>
           Clear all
         </button>

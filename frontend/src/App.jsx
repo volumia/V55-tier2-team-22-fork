@@ -118,6 +118,7 @@ function App() {
           setSearchFilter(term);
           goToListPage(0);
         }}
+        showClearButton={areFilterOptionsUsed}
         onClearAll={handleClearAll}
       />
 
