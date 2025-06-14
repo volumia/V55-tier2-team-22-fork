@@ -10,6 +10,7 @@ import { GoSortDesc } from "react-icons/go";
 
 function SortDropdown({ onSortChange, sortBy = "title", sortOrder = "asc" }) {
   const [showOptions, setShowOptions] = useState(false);
+  const showButtonEl = useRef(null);
   const dropdownEl = useRef(null);
 
   const handleSortField = (field) => {
@@ -21,8 +22,11 @@ function SortDropdown({ onSortChange, sortBy = "title", sortOrder = "asc" }) {
   };
 
   const onDropdownFocusOut = (e) => {
-    // Close dropdown container when clicking or tabbing out of it
-    if (!dropdownEl.current.contains(e.relatedTarget)) {
+    // Close dropdown container when clicking or tabbing out of it.
+    // We do not trigger this when the new focus is the show button itself,
+    // since that likely means the new focus was triggered by a click,
+    // which would toggle the boolean that was just set to false back to true. 
+    if (!dropdownEl.current.contains(e.relatedTarget) && e.relatedTarget !== showButtonEl.current) {
       setShowOptions(false);
     }
   };
@@ -36,7 +40,11 @@ function SortDropdown({ onSortChange, sortBy = "title", sortOrder = "asc" }) {
 
   return (
     <div className={styles.container}>
-      <button className={styles.sort_button} onClick={() => setShowOptions((prev) => !prev)}>
+      <button
+        ref={showButtonEl}
+        className={styles.sort_button}
+        onClick={() => setShowOptions((prev) => !prev)}
+      >
         <TbArrowsSort size="1.25em" />
         <span className="ms-2">Sort</span>
 
