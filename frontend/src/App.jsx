@@ -129,7 +129,7 @@ function App() {
         />
 
         {/* Horizontal separator */}
-        <div className="w-[2px] h-8 bg-mono-800"></div>
+        <div className="w-[2px] h-8 bg-mono-800 hidden md:block"></div>
 
         {/* Tags Dropdown Selection */}
         <TagDropdown
