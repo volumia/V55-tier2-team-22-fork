@@ -20,6 +20,12 @@ const displaySettings = {
   pageSize: 9
 };
 
+const defaultSettings = {
+  searchFilter: "title",
+  sortBy: "date",
+  sortOrder: "desc"
+};
+
 function App() {
   const { resources, idToTagMap, status, fetchData } = useResourceData();
   const { itemDisplayRange, goToPage: goToListPage } = usePaginator(displaySettings.pageSize);
@@ -27,12 +33,12 @@ function App() {
   // Filter options
   const [selectedTags, setSelectedTags] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchFilter, setSearchFilter] = useState("title");
+  const [searchFilter, setSearchFilter] = useState(defaultSettings.searchFilter);
   const areFilterOptionsUsed = searchTerm || (selectedTags && selectedTags.length > 0);
 
   // Sorting options
-  const [sortBy, setSortBy] = useState("date");
-  const [sortOrder, setSortOrder] = useState("desc");
+  const [sortBy, setSortBy] = useState(defaultSettings.sortBy);
+  const [sortOrder, setSortOrder] = useState(defaultSettings.sortOrder);
 
   const { filterAndSortResources } = useFilterAndSort(
     resources,
@@ -65,12 +71,9 @@ function App() {
     setSortOrder(order);
   }
 
-  // Clear all function
-  function handleClearAll() {
+  function clearFilters() {
     setSearchTerm("");
     setSelectedTags([]);
-    setSortBy("title");
-    setSortOrder("asc");
     goToListPage(0);
   }
 
@@ -119,7 +122,7 @@ function App() {
           goToListPage(0);
         }}
         showClearButton={areFilterOptionsUsed}
-        onClearAll={handleClearAll}
+        onClearAll={clearFilters}
       />
 
       <div className="flex flex-col gap-x-4 gap-y-4 md:flex-row md:justify-center md:items-center py-5 my-12 border-b-1 border-cyan-500">
@@ -148,7 +151,7 @@ function App() {
       ) : (
         <NoResourcesFound
           areFiltersUsed={areFilterOptionsUsed}
-          clearAllFilters={handleClearAll}
+          clearAllFilters={clearFilters}
         ></NoResourcesFound>
       )}
 

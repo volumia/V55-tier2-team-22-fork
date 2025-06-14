@@ -47,7 +47,7 @@ function SearchBar({
 
       {showClearButton && (
         <button className={styles.clear_button} onClick={onClearAll}>
-          Clear all
+          Clear all filters
         </button>
       )}
     </div>
