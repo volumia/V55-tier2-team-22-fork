@@ -35,6 +35,8 @@
   border-radius: var(--radius-sm);
   background-color: var(--color-mono-50);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 30%);
+
+  z-index: 1;
 }
 
 .section_header {
