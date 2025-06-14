@@ -31,8 +31,8 @@ function App() {
   const areFilterOptionsUsed = searchTerm || (selectedTags && selectedTags.length > 0);
 
   // Sorting options
-  const [sortBy, setSortBy] = useState("title");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortBy, setSortBy] = useState("date");
+  const [sortOrder, setSortOrder] = useState("desc");
 
   const { filterAndSortResources } = useFilterAndSort(
     resources,
